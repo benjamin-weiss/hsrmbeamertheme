@@ -19,7 +19,6 @@
 *.maf
 *.mtc
 *.mtc0
-*.nav
 *.nlo
 *.out
 *.pdfsync
@@ -30,3 +29,4 @@
 *.vrb
 *.xdy
 *.tdo
+.DS_Store
