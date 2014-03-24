@@ -1,8 +1,9 @@
 % Name           : beamerthemehsrm.sty
-% Version        : 0.3c
+% Author         : Benjamin Weiss (benjamin.weiss@kreatiefton.de)
+% Version        : 0.4
 % Created on     : 05.05.2013
-% Last Edited on : 16.05.2013
-% Copyright      : Copyright (c) 2013 by Benjamin Weiss. All rights reserved.
+% Last Edited on : 24.03.2014
+% Copyright      : Copyright (c) 2013-2014 by Benjamin Weiss. All rights reserved.
 % License        : This file may be distributed and/or modified under the
 %                  GNU Public License.
 % Description    : Beamer theme that complies with the corporate design of
@@ -115,15 +116,14 @@
 \if@doNoFlama%
 	% Sans serif math option
 	\if@doSans%
-	% Sans serif math
-		\usepackage{fontspec}%
-		\setmainfont{Arial Narrow}%
+		% sans serif math %
+		\usepackage[no-math]{fontspec}%	
+		\setmainfont{Arial}%
 	\else%
-		% Serif math
-		\usefonttheme{professionalfonts}%
-		\usepackage[no-math]{fontspec}%
+		% serif math %
+		\usepackage{fontspec}%	
+		\usefonttheme[onlymath]{serif}%
 	\fi%
-	
 	\newfontfamily\Light{Arial}%
 	\newfontfamily\Book{Arial-Bold}%
 	\newfontfamily\Medium{Arial-Bold}%
@@ -131,15 +131,12 @@
 \else%
 	% Sans serif math option
 	\if@doSans%
-	% Sans serif math
-		\usepackage{fontspec}%
+		\usepackage[no-math]{fontspec}%	
 		\setmainfont{Flama-Light}%
 	\else%
-		% Serif math
-		\usefonttheme{professionalfonts}%
-		\usepackage[no-math]{fontspec}%
+		\usepackage{fontspec}%	
+		\usefonttheme[onlymath]{serif}%
 	\fi%
-	
 	\newfontfamily\Light{Flama-Light}%
 	\newfontfamily\Book{Flama-Book}%
 	\newfontfamily\Medium{Flama-Medium}%
