@@ -9,4 +9,4 @@ Das HSRM Theme steht unter der [GNU Public License](http://www.gnu.org/licenses/
 
 Für Fragen und Anmerkungen stehe ich gerne unter nachfolgender E-Mail-Ad­res­se zur Verfügung.
 
-[Benjamin.Weiss@student.hs-rm.de](mailto:Benjamin.Weiss@student.hs-rm.de)
+[Benjamin.Weiss@kreatiefton.de](mailto:Benjamin.Weiss@kreatiefton.de)
