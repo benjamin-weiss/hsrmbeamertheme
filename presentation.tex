@@ -7,11 +7,12 @@
 \usepackage[english]{babel}
 \usepackage{pgfpages} % required for notes on second screen
 \usepackage{graphicx}
+
 \usepackage{multicol}
-% Erweiterte Tabellenfunktionen
+
 \usepackage{tabularx,ragged2e}
 \usepackage{booktabs}
-% Listingserweiterung
+
 \usepackage{listings}
 \lstset{ %
 language=[LaTeX]TeX,
@@ -33,6 +34,7 @@ xleftmargin=0.5em,
 xrightmargin=0.5em
 }
 
+
 %--------------------------------------------------------------------------
 % Load theme
 %--------------------------------------------------------------------------
@@ -40,7 +42,7 @@ xrightmargin=0.5em
 
 \usepackage{dtklogos} % must be loaded after theme
 \usepackage{tikz}
-\usetikzlibrary{mindmap,backgrounds}
+\usetikzlibrary{mindmap,backgrounds,positioning}
 
 %--------------------------------------------------------------------------
 % General presentation settings
@@ -71,8 +73,8 @@ EPFL}}
 %--------------------------------------------------------------------------
 % Table of contents
 %--------------------------------------------------------------------------
-\section*{Gliederung}
-\begin{frame}{Gliederung}
+\section*{Overview}
+\begin{frame}{Overview}
 	% hideallsubsections ist empfehlenswert für längere Präsentationen
 	\tableofcontents[hideallsubsections]
 \end{frame}
@@ -80,42 +82,9 @@ EPFL}}
 %--------------------------------------------------------------------------
 % Content
 %--------------------------------------------------------------------------
-\section{Einleitung}
+\section{Introduction}
 
-\begin{frame}{Was ist Beamer?}
-	Die Beamer Klassen für \LaTeX\ dienen zur Erstellung von Präsentationen, welche mit einem Beamer vorgeführt werden sollen. Das Textsatzsystem erzeugt dazu PDF Dateien, die von einer großen Anzahl an Programmen gezeigt werden können.
-	
-	Das hier vorgestellte Theme für Beamer macht die Erstellung von Folien entsprechend dem Corporate Design der Hochschule {\Medium RheinMain} (Grundkenntnisse in \LaTeX\ vorausgesetzt) zu einem Kinderspiel.
-\end{frame}
-
-\begin{frame}{Systemvoraussetzungen}
-	Um erfolgreich Präsentationen mit diesem Theme erstellen zu können, sind folgende Voraussetzungen vom System zu erfüllen:
-	\begin{itemize}
-		\item Zum Setzen der Folien muss XeTeX verwendet werden.
-		\item Neben einigen Standardpaketen müssen die Pakete \texttt{beamer}, \texttt{pgf} und \texttt{xcolor} installiert sein.
-		\item Die Schriften \quoted{Flama-Light}, \quoted{Flama-Book} und \quoted{Flama-Medium} sollten installiert sein. Alternativ: \quoted{Arial}\\\url{http://www.felicianotypefoundry.com/}
-	\end{itemize}
-\end{frame}
-
-\section{Tutorial}
-\begin{frame}[containsverbatim]{Grundaufbau des Dokuments}
-Der Grundaufbau ist einfach:
-\begin{lstlisting}
-\documentclass[compress]{beamer}
-% Theme laden
-\usetheme{hri}
-% Allgemeine Präsentationseinstellungen 
-\title{Titel der Präsentation}
-\subtitle{Untertitel der Präsentation}
-\author{Ihr Name}
-\institute{Studienbereich\\Hochschule {\Medium RheinMain}}
-\begin{document}
-% Folien
-\end{document}
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}{Themeoptionen}
+\begin{frame}{Theme options}
 Um die Darstellung der Präsentation anzupassen können die folgenden Optionen gewählt werden.
 \begin{table}[]
 	\begin{tabularx}{\linewidth}{l>{\raggedright}X}
@@ -398,20 +367,37 @@ Ein Example Block wird mit der ersten Sekundärfarbe eingefärbt.
 \end{lstlisting}
 \end{frame}
 
-\section{Beispielfolien}
-\begin{frame}{Weitere Beispiele}
-Nachfolgend sind weitere Beispielfolien ohne zusätzliche Erläuterung angehängt.
+\section{Content Examples}
 
-Schauen Sie einfach in den Quelltext, um zu sehen wie die Folien erstellt wurden.
-\end{frame}
-\subsection{Abbildungen}
-\begin{frame}{Foto mit Copyright}
+\subsection{Images 1/2}
+\begin{frame}{Picture with credit line}
 	\begin{figure}
 		\centering
-		\includegraphicscopyright[width=\linewidth]{photo.jpg}{Copyright by \href{http://netzlemming.deviantart.com/}{Netzlemming}, \href{http://creativecommons.org/licenses/by-nc/3.0/}{CC BY-NC 3.0 License}}
+        \includegraphicscopyright[width=\linewidth]{photo.jpg}{Copyright EPFL
+        2014}
 	\end{figure}
 \end{frame}
-\begin{frame}{Plot mit Beschriftung}
+
+\subsection{Images 2/2}
+{
+\fullbackground{photo-fullscreen.jpg}
+\begin{frame}{Fullscreen picture/graphic}
+    \textcolor{white}{
+    Normal text goes here.
+    }
+    \begin{block}{Block with tile}
+        \begin{itemize}
+            \item Item 1
+            \item Item 2
+        \end{itemize}
+    \end{block}
+\end{frame}
+}
+
+\imageframe[Children playing with\\the Ranger robot]{photo-fullscreen.jpg}
+
+\subsection{Plotting}
+\begin{frame}{Plot with caption}
 	\begin{figure}
 		\centering
 		\input{plot.tex}
@@ -419,8 +405,11 @@ Schauen Sie einfach in den Quelltext, um zu sehen wie die Folien erstellt wurden
 	\end{figure}
 \end{frame}
 
-\subsection{Tabellen}
-\begin{frame}{Tabelle}
+
+
+
+\subsection{Table}
+\begin{frame}{Table}
 \begin{table}[]
 	\caption{Selection of window function and their properties}
 	\begin{tabular}[]{lrrr}
@@ -439,21 +428,101 @@ Schauen Sie einfach in den Quelltext, um zu sehen wie die Folien erstellt wurden
 \end{table}
 \end{frame}
 
-\subsection{Formeln}
-\begin{frame}{Formeln}
-\begin{block}{Fourierintegral}
+\subsection{Maths}
+\begin{frame}{Maths}
+\begin{block}{Fourier Integral}
 \begin{equation*}
 F(\textrm{j}\omega) = \int\limits_{-\infty}^{\infty} f(t)\cdot\textrm{e}^{-\textrm{j}\omega t} dt
 \end{equation*}
 \end{block}
-\begin{block}{Fakultät}
+\begin{block}{Factorial}
 \begin{equation*}
 	n! = 1\cdot 2 \cdot 3 \cdot\ldots\cdot n = \prod_{k=1}^n k
 \end{equation*}
 \end{block}
 \end{frame}
 
-\begin{frame}{Mindmap mit TikZ}
+\subsection{TikZ 1/2}
+\begin{frame}{TikZ figure}
+	\begin{figure}
+		\centering
+
+\resizebox{\paperwidth}{!}{%
+
+\tikzset{subpart/.style={draw, font=\scriptsize, fill opacity=0.5, text opacity=1, fill=white!50}}
+
+\begin{tikzpicture}[
+    >=latex,
+    every edge/.style={draw, very thick},
+    skill/.style={draw, rounded corners, align=center, inner sep=5pt, fill=black!20},
+    label/.style={midway, align=center, font=\scriptsize, fill=white}]
+
+  %%% ORO
+    \node at (0,0)[skill, ultra thick, fill=hriSec2Dark!50] (oro) {{\sc Oro} -- Symbolic facts \\ and beliefs management};
+  
+  %%% HATP
+  \node at (-6, 2.5)[skill, fill=hriSec1!50] (hatp) {HATP -- Human-aware \\ symbolic task planning};
+  
+  %%% DIALOGS
+  \node at (-6, -3) [skill, fill=hriSec3Dark!50] (dialogs) {{\sc Dialogs} \\ Dialogue processing};
+
+  %%% SPARK
+  \node at (4,-3.5)[skill, fill=hriSec3!50] (spark) {%
+      \begin{tikzpicture}
+          \node at (0,0) (geom) {{\sc Spark} -- Geometric \& Temporal Reasoning};
+        \node [subpart, below=0.2 of geom.south west, anchor=north west] (world-update) {Sensors fusion};
+        \node [subpart, right=0.2 of world-update] (geom-model) {Geometric model of the environment};
+        \node [subpart, right=0.2 of geom-model] (fact-prod) {Symbolic facts production};
+      \end{tikzpicture}
+    };
+
+  %%% MHP
+    \node at (9,0)[skill, fill=hriSec3CompDark!50] (mhp) {{\sc mhp} -- Human-aware \\ Motion and Manipulation \\ Planning};
+
+  %%% SHARY
+  \node at (4,4.5)[skill, fill=hriSec1Comp!50] (shary) {%
+      \begin{tikzpicture}
+        \node at (0,0) (exec) {Execution Controller};
+        \node [subpart, below=0.2 of exec.south west, anchor=north west] (plans) {Goal \& Plans \\ management};
+        \node [subpart, right=0.2 of plans] (sit-asses) {Situation assessment \\ and context management};
+        \node [subpart, right=0.2 of sit-asses] {Action instantiation, \\ execution and monitoring};
+      \end{tikzpicture}
+    };
+
+
+  %%% LOWLEVEL
+  \node [skill, below=0.7 of spark] (lowlevel) {%
+      \begin{tikzpicture}
+        \node at (0,0) (sensori) {Sensorimotor layer};
+        %\node [subpart, below=0.2 of sensori.south west, anchor=north west, align=left] (perception) {{\bf Perception} \\ 2D markers, RGB-D, motion capture};
+        %\node [subpart, align=right, right=0.2 of perception] {{\bf Actuation} \\ Head's pan-tilt unit, grippers, arms, wheels};
+      \end{tikzpicture}
+  };
+
+  %%% Separation between deliberative layer and sensori-motor layer
+  \draw[dotted, thick] (-8,-5) -- (12, -5);
+
+  %%% Relations between components
+  \path (shary.340) edge [<->, bend left] node[label] {motion plan \\ requests} (mhp);
+  \path (shary.west) edge [<->, bend right] node[label] {shared \\ plans} (hatp);
+  \path (hatp) edge [<->, bend right] node[label] {world model and \\ agents beliefs} (oro.170);
+  \path (dialogs) edge [<->, bend left] node[label] {natural language \\ grounding} (oro.190);
+  \path (spark.100) edge [->, bend right] node[label] {symbolic \\ facts} (oro);
+  \path (spark.5) edge [->, bend right] node[label] {environment\\model} (mhp);
+  \path (shary) edge [<->, bend left] node[label] {events, \\ world model and \\ agents beliefs} (oro);
+  \path (shary) edge [<->, bend left] node[label] {action monitoring \\ and management of \\ position hypotheses} (spark);
+  \path (lowlevel) edge [->] (spark);
+  \path (lowlevel.east) edge [<-, bend right=80, looseness=1.5] node[label] {atomic\\actions} (shary.east);
+
+\end{tikzpicture}
+}
+	\end{figure}
+\end{frame}
+
+
+\subsection{TikZ 2/2}
+
+\begin{frame}{Mindmap with TikZ}
 \centering
 \begin{tikzpicture}[scale=0.88]
 	%\tikzset{every child/.append style={level distance=250}}
@@ -466,9 +535,29 @@ F(\textrm{j}\omega) = \int\limits_{-\infty}^{\infty} f(t)\cdot\textrm{e}^{-\text
 \end{tikzpicture}
 \end{frame}
 
-\subsection{Fußnoten}
-\begin{frame}{Fußnoten}
-	Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem \footnote{Lorem ipsum dolor sit amet} ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+\subsection{Video clips}
+\begin{frame}{Video clip}
+        \href{run:videoclip.webm}{Hello}
+        \href{run:videoclip.webm}{\includegraphics[width=0.5\textwidth]{videoclip_thumb.jpg}}
+    \begin{center}
+    \end{center}
+\end{frame}
+
+
+
+
+\subsection{Footnotes}
+\begin{frame}{Footnotes}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+amet. Lorem \footnote{Lorem ipsum dolor sit amet} ipsum dolor sit amet,
+consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+takimata sanctus est Lorem ipsum dolor sit amet.
+
 \end{frame}
 
 \subsection{Notizen}
@@ -529,22 +618,6 @@ F(\textrm{j}\omega) = \int\limits_{-\infty}^{\infty} f(t)\cdot\textrm{e}^{-\text
 	\newblock \doublequoted{Specification of the Broadcast Wave Format (BWF)}
 	\newblock 2011
   \end{thebibliography}
-\end{frame}
-
-\section{Ausblick}
-\begin{frame}{Bekannte Fehler}
-	\begin{itemize}
-		\item Theme ist momentan noch in einer einzelnen sty-Datei. Diese sollte unterteilt werden in einzelne Dateien für Schrift, Farbe usw.
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Fragen, Anmerkungen, Kontakt}
-	Das hri Theme steht unter der \quoted{GNU Public License}. Es darf also weitergegeben und modifiziert werden, sofern die Lizenzart beibehalten wird.
-	
-	Für Fragen und Anmerkungen stehe ich gerne zur Verfügung.
-	\begin{itemize}
-		\item \url{Benjamin.Weiss@student.hs-rm.de}
-	\end{itemize}
 \end{frame}
 
 \end{document}
