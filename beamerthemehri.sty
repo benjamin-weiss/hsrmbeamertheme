@@ -45,6 +45,15 @@
 \setlength{\parskip}{0.5em}
 
 %---------------------------------------------------------------------
+% Background
+%---------------------------------------------------------------------
+
+\setbeamertemplate{background}{
+    \includegraphics[width=\paperwidth,
+    height=\paperheight]{slide-background.pdf}
+}
+
+%---------------------------------------------------------------------
 % Colors
 %---------------------------------------------------------------------
 
@@ -160,8 +169,11 @@
 %---------------------------------------------------------------------
 
 % Titlepage structure
-\def\maketitle{\ifbeamer@inframe\titlepage\else\frame[plain]{\titlepage}\fi}
-\def\titlepage{\usebeamertemplate{title page}}
+\def\maketitle{\ifbeamer@inframe\titlepage\else{\setbeamertemplate{background}{}\frame[plain]{\titlepage}}\fi}
+    
+\def\titlepage{
+\usebeamertemplate{title page}
+}
 \setbeamertemplate{title page}
 {
 	% Add background to title page
@@ -215,6 +227,7 @@
 \AtBeginSection[]
 {
 \begingroup
+\setbeamertemplate{background}{}
 \setbeamercolor{background canvas}{bg=hriWarmGreyDark}
 \begin{frame}[plain]
 \centering
