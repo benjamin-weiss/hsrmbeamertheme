@@ -1,22 +1,11 @@
 %!TEX program = xelatex
 
-% Name           : hsrm-beamer-demo.sty
-% Author         : Benjamin Weiss (benjamin.weiss@kreatiefton.de)
-% Version        : 0.4
-% Created on     : 05.05.2013
-% Last Edited on : 24.03.2014
-% Copyright      : Copyright (c) 2013-2014 by Benjamin Weiss. All rights reserved.
-% License        : This file may be distributed and/or modified under the
-%                  GNU Public License.
-% Description    : HSRM beamer theme demonstration. Also includes a short 
-%                  Tutorial regarding the beamer class.
-
 \documentclass[compress]{beamer}
 %--------------------------------------------------------------------------
 % Common packages
 %--------------------------------------------------------------------------
-\usepackage[german]{babel}
-
+\usepackage[english]{babel}
+\usepackage{pgfpages} % required for notes on second screen
 \usepackage{graphicx}
 \usepackage{multicol}
 % Erweiterte Tabellenfunktionen
@@ -47,7 +36,7 @@ xrightmargin=0.5em
 %--------------------------------------------------------------------------
 % Load theme
 %--------------------------------------------------------------------------
-\usetheme{hsrm}
+\usetheme{hri}
 
 \usepackage{dtklogos} % must be loaded after theme
 \usepackage{tikz}
@@ -56,16 +45,17 @@ xrightmargin=0.5em
 %--------------------------------------------------------------------------
 % General presentation settings
 %--------------------------------------------------------------------------
-\title{HSRM Beamer Theme}
-\subtitle{Demonstration und kurze Einführung in Beamer}
-\date{Letztes Update: \today}
-\author{Benjamin Weiss}
-\institute{Studienbereich Informations- und Elektrotechnik\\Hochschule {\Medium RheinMain}}
+\title{HRI Beamer Theme}
+\subtitle{Demo Presentation}
+\date{\today}
+\author{Séverin Lemaignan}
+\institute{Computer-Human Interaction\\for Learning and Instruction {\Medium
+EPFL}}
 
 %--------------------------------------------------------------------------
 % Notes settings
 %--------------------------------------------------------------------------
-\setbeameroption{show notes}
+\setbeameroption{show notes on second screen}
 
 \begin{document}
 %--------------------------------------------------------------------------
@@ -113,7 +103,7 @@ Der Grundaufbau ist einfach:
 \begin{lstlisting}
 \documentclass[compress]{beamer}
 % Theme laden
-\usetheme{hsrm}
+\usetheme{hri}
 % Allgemeine Präsentationseinstellungen 
 \title{Titel der Präsentation}
 \subtitle{Untertitel der Präsentation}
@@ -147,38 +137,38 @@ Alle Farben des Corporate Designs sind im Template hinterlegt.
 
 \begin{multicols}{2}
 
-\setbeamercolor{hsrmRedDemo}{fg=hsrmRed,bg=white}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hsrmRedDemo}
-	\texttt{hsrmRed}
+\setbeamercolor{hriRedDemo}{fg=hriRed,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hriRedDemo}
+	\texttt{hriRed}
 \end{beamercolorbox}
-\setbeamercolor{hsrmRedDarkDemo}{fg=hsrmRedDark,bg=white}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hsrmRedDarkDemo}
-	\texttt{hsrmRedDark}
+\setbeamercolor{hriRedDarkDemo}{fg=hriRedDark,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hriRedDarkDemo}
+	\texttt{hriRedDark}
 \end{beamercolorbox}
-\setbeamercolor{hsrmWarmGreyDarkDemo}{fg=hsrmWarmGreyDark,bg=white}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hsrmWarmGreyDarkDemo}
-	\texttt{hsrmWarmGreyDark}
+\setbeamercolor{hriWarmGreyDarkDemo}{fg=hriWarmGreyDark,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hriWarmGreyDarkDemo}
+	\texttt{hriWarmGreyDark}
 \end{beamercolorbox}
-\setbeamercolor{hsrmWarmGreyLightDemo}{fg=hsrmWarmGreyLight,bg=white}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hsrmWarmGreyLightDemo}
-	\texttt{hsrmWarmGreyLight}
+\setbeamercolor{hriWarmGreyLightDemo}{fg=hriWarmGreyLight,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hriWarmGreyLightDemo}
+	\texttt{hriWarmGreyLight}
 \end{beamercolorbox}
 
-\setbeamercolor{hsrmRedDemoBg}{fg=white,bg=hsrmRed}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hsrmRedDemoBg}
-	\texttt{hsrmRed}
+\setbeamercolor{hriRedDemoBg}{fg=white,bg=hriRed}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hriRedDemoBg}
+	\texttt{hriRed}
 \end{beamercolorbox}
-\setbeamercolor{hsrmRedDarkDemoBg}{fg=white,bg=hsrmRedDark}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hsrmRedDarkDemoBg}
-	\texttt{hsrmRedDark}
+\setbeamercolor{hriRedDarkDemoBg}{fg=white,bg=hriRedDark}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hriRedDarkDemoBg}
+	\texttt{hriRedDark}
 \end{beamercolorbox}
-\setbeamercolor{hsrmWarmGreyDarkDemo}{fg=white,bg=hsrmWarmGreyDark}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hsrmWarmGreyDarkDemo}
-	\texttt{hsrmWarmGreyDark}
+\setbeamercolor{hriWarmGreyDarkDemo}{fg=white,bg=hriWarmGreyDark}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hriWarmGreyDarkDemo}
+	\texttt{hriWarmGreyDark}
 \end{beamercolorbox}
-\setbeamercolor{hsrmWarmGreyLightDemo}{fg=white,bg=hsrmWarmGreyLight}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hsrmWarmGreyLightDemo}
-	\texttt{hsrmWarmGreyLight}
+\setbeamercolor{hriWarmGreyLightDemo}{fg=white,bg=hriWarmGreyLight}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hriWarmGreyLightDemo}
+	\texttt{hriWarmGreyLight}
 \end{beamercolorbox}
 
 \end{multicols}
@@ -188,106 +178,106 @@ Alle Farben des Corporate Designs sind im Template hinterlegt.
 \begin{frame}{Sekundärfarben}
 \begin{multicols}{2}
 
-\setbeamercolor{hsrmSec1Demo}{fg=hsrmSec1,bg=white}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hsrmSec1Demo}
-	\texttt{hsrmSec1}
+\setbeamercolor{hriSec1Demo}{fg=hriSec1,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hriSec1Demo}
+	\texttt{hriSec1}
 \end{beamercolorbox}
-\setbeamercolor{hsrmSec1DarkDemo}{fg=hsrmSec1Dark,bg=white}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hsrmSec1DarkDemo}
-	\texttt{hsrmSec1Dark}
+\setbeamercolor{hriSec1DarkDemo}{fg=hriSec1Dark,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hriSec1DarkDemo}
+	\texttt{hriSec1Dark}
 \end{beamercolorbox}
-\setbeamercolor{hsrmSec1CompDemo}{fg=hsrmSec1Comp,bg=white}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hsrmSec1CompDemo}
-	\texttt{hsrmSec1Comp}
+\setbeamercolor{hriSec1CompDemo}{fg=hriSec1Comp,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hriSec1CompDemo}
+	\texttt{hriSec1Comp}
 \end{beamercolorbox}
-\setbeamercolor{hsrmSec1CompDarkDemo}{fg=hsrmSec1CompDark,bg=white}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hsrmSec1CompDarkDemo}
-	\texttt{hsrmSec1CompDark}
-\end{beamercolorbox}
-
-\setbeamercolor{hsrmSec2Demo}{fg=hsrmSec2,bg=white}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hsrmSec2Demo}
-	\texttt{hsrmSec2}
-\end{beamercolorbox}
-\setbeamercolor{hsrmSec2DarkDemo}{fg=hsrmSec2Dark,bg=white}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hsrmSec2DarkDemo}
-	\texttt{hsrmSec2Dark}
-\end{beamercolorbox}
-\setbeamercolor{hsrmSec2CompDemo}{fg=hsrmSec2Comp,bg=white}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hsrmSec2CompDemo}
-	\texttt{hsrmSec2Comp}
-\end{beamercolorbox}
-\setbeamercolor{hsrmSec2CompDarkDemo}{fg=hsrmSec2CompDark,bg=white}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hsrmSec2CompDarkDemo}
-	\texttt{hsrmSec2CompDark}
+\setbeamercolor{hriSec1CompDarkDemo}{fg=hriSec1CompDark,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hriSec1CompDarkDemo}
+	\texttt{hriSec1CompDark}
 \end{beamercolorbox}
 
-\setbeamercolor{hsrmSec3Demo}{fg=hsrmSec3,bg=white}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hsrmSec3Demo}
-	\texttt{hsrmSec3}
+\setbeamercolor{hriSec2Demo}{fg=hriSec2,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hriSec2Demo}
+	\texttt{hriSec2}
 \end{beamercolorbox}
-\setbeamercolor{hsrmSec3DarkDemo}{fg=hsrmSec3Dark,bg=white}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hsrmSec3DarkDemo}
-	\texttt{hsrmSec3Dark}
+\setbeamercolor{hriSec2DarkDemo}{fg=hriSec2Dark,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hriSec2DarkDemo}
+	\texttt{hriSec2Dark}
 \end{beamercolorbox}
-\setbeamercolor{hsrmSec3CompDemo}{fg=hsrmSec3Comp,bg=white}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hsrmSec3CompDemo}
-	\texttt{hsrmSec3Comp}
+\setbeamercolor{hriSec2CompDemo}{fg=hriSec2Comp,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hriSec2CompDemo}
+	\texttt{hriSec2Comp}
 \end{beamercolorbox}
-\setbeamercolor{hsrmSec3CompDarkDemo}{fg=hsrmSec3CompDark,bg=white}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hsrmSec3CompDarkDemo}
-	\texttt{hsrmSec3CompDark}
-\end{beamercolorbox}
-
-\setbeamercolor{hsrmSec1DemoBg}{fg=white,bg=hsrmSec1}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hsrmSec1DemoBg}
-	\texttt{hsrmSec1}
-\end{beamercolorbox}
-\setbeamercolor{hsrmSec1DarkDemoBg}{fg=white,bg=hsrmSec1Dark}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hsrmSec1DarkDemoBg}
-	\texttt{hsrmSec1Dark}
-\end{beamercolorbox}
-\setbeamercolor{hsrmSec1CompDemoBg}{fg=white,bg=hsrmSec1Comp}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hsrmSec1CompDemoBg}
-	\texttt{hsrmSec1Comp}
-\end{beamercolorbox}
-\setbeamercolor{hsrmSec1CompDarkDemoBg}{fg=white,bg=hsrmSec1CompDark}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hsrmSec1CompDarkDemoBg}
-	\texttt{hsrmSec1CompDark}
+\setbeamercolor{hriSec2CompDarkDemo}{fg=hriSec2CompDark,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hriSec2CompDarkDemo}
+	\texttt{hriSec2CompDark}
 \end{beamercolorbox}
 
-\setbeamercolor{hsrmSec2DemoBg}{fg=white,bg=hsrmSec2}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hsrmSec2DemoBg}
-	\texttt{hsrmSec2}
+\setbeamercolor{hriSec3Demo}{fg=hriSec3,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hriSec3Demo}
+	\texttt{hriSec3}
 \end{beamercolorbox}
-\setbeamercolor{hsrmSec2DarkDemoBg}{fg=white,bg=hsrmSec2Dark}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hsrmSec2DarkDemoBg}
-	\texttt{hsrmSec2Dark}
+\setbeamercolor{hriSec3DarkDemo}{fg=hriSec3Dark,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hriSec3DarkDemo}
+	\texttt{hriSec3Dark}
 \end{beamercolorbox}
-\setbeamercolor{hsrmSec2CompDemoBg}{fg=white,bg=hsrmSec2Comp}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hsrmSec2CompDemoBg}
-	\texttt{hsrmSec2Comp}
+\setbeamercolor{hriSec3CompDemo}{fg=hriSec3Comp,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hriSec3CompDemo}
+	\texttt{hriSec3Comp}
 \end{beamercolorbox}
-\setbeamercolor{hsrmSec2CompDarkDemoBg}{fg=white,bg=hsrmSec2CompDark}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hsrmSec2CompDarkDemoBg}
-	\texttt{hsrmSec2CompDark}
+\setbeamercolor{hriSec3CompDarkDemo}{fg=hriSec3CompDark,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{hriSec3CompDarkDemo}
+	\texttt{hriSec3CompDark}
 \end{beamercolorbox}
 
-\setbeamercolor{hsrmSec3Demo}{fg=white,bg=hsrmSec3}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hsrmSec3Demo}
-	\texttt{hsrmSec3}
+\setbeamercolor{hriSec1DemoBg}{fg=white,bg=hriSec1}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hriSec1DemoBg}
+	\texttt{hriSec1}
 \end{beamercolorbox}
-\setbeamercolor{hsrmSec3DarkDemo}{fg=white,bg=hsrmSec3Dark}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hsrmSec3DarkDemo}
-	\texttt{hsrmSec3Dark}
+\setbeamercolor{hriSec1DarkDemoBg}{fg=white,bg=hriSec1Dark}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hriSec1DarkDemoBg}
+	\texttt{hriSec1Dark}
 \end{beamercolorbox}
-\setbeamercolor{hsrmSec3CompDemo}{fg=white,bg=hsrmSec3Comp}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hsrmSec3CompDemo}
-	\texttt{hsrmSec3Comp}
+\setbeamercolor{hriSec1CompDemoBg}{fg=white,bg=hriSec1Comp}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hriSec1CompDemoBg}
+	\texttt{hriSec1Comp}
 \end{beamercolorbox}
-\setbeamercolor{hsrmSec3CompDarkDemo}{fg=white,bg=hsrmSec3CompDark}
-\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hsrmSec3CompDarkDemo}
-	\texttt{hsrmSec3CompDark}
+\setbeamercolor{hriSec1CompDarkDemoBg}{fg=white,bg=hriSec1CompDark}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hriSec1CompDarkDemoBg}
+	\texttt{hriSec1CompDark}
+\end{beamercolorbox}
+
+\setbeamercolor{hriSec2DemoBg}{fg=white,bg=hriSec2}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hriSec2DemoBg}
+	\texttt{hriSec2}
+\end{beamercolorbox}
+\setbeamercolor{hriSec2DarkDemoBg}{fg=white,bg=hriSec2Dark}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hriSec2DarkDemoBg}
+	\texttt{hriSec2Dark}
+\end{beamercolorbox}
+\setbeamercolor{hriSec2CompDemoBg}{fg=white,bg=hriSec2Comp}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hriSec2CompDemoBg}
+	\texttt{hriSec2Comp}
+\end{beamercolorbox}
+\setbeamercolor{hriSec2CompDarkDemoBg}{fg=white,bg=hriSec2CompDark}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hriSec2CompDarkDemoBg}
+	\texttt{hriSec2CompDark}
+\end{beamercolorbox}
+
+\setbeamercolor{hriSec3Demo}{fg=white,bg=hriSec3}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hriSec3Demo}
+	\texttt{hriSec3}
+\end{beamercolorbox}
+\setbeamercolor{hriSec3DarkDemo}{fg=white,bg=hriSec3Dark}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hriSec3DarkDemo}
+	\texttt{hriSec3Dark}
+\end{beamercolorbox}
+\setbeamercolor{hriSec3CompDemo}{fg=white,bg=hriSec3Comp}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hriSec3CompDemo}
+	\texttt{hriSec3Comp}
+\end{beamercolorbox}
+\setbeamercolor{hriSec3CompDarkDemo}{fg=white,bg=hriSec3CompDark}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{hriSec3CompDarkDemo}
+	\texttt{hriSec3CompDark}
 \end{beamercolorbox}
 
 \end{multicols}
@@ -341,7 +331,7 @@ In der Beamer Klasse ist die Funktion \lstinline!\alert! definiert, um einzelne 
 \begin{itemize}
 	\item \alert{hervorgehobener Text}
 \end{itemize}
-Zusätzlich sind im HSRM Theme noch \lstinline!\quoted! und \lstinline!\doublequoted! definiert, um die Anführungszeichen des Corporate Designs der Hochschule einfach im Zugriff zu haben. Beispiele:
+Zusätzlich sind im hri Theme noch \lstinline!\quoted! und \lstinline!\doublequoted! definiert, um die Anführungszeichen des Corporate Designs der Hochschule einfach im Zugriff zu haben. Beispiele:
 \begin{itemize}
 	\item[] \quoted{Einfache Anführungszeichen}
 	\item[] \doublequoted{Doppelte Anführungszeichen}
@@ -391,16 +381,16 @@ Ein Example Block wird mit der ersten Sekundärfarbe eingefärbt.
 
 \begin{frame}[containsverbatim]{Block mit anderer Farbe}
 \begingroup
-\setbeamercolor{block title}{bg=hsrmSec2Dark}
-\setbeamercolor{block body}{bg=hsrmSec2}
+\setbeamercolor{block title}{bg=hriSec2Dark}
+\setbeamercolor{block body}{bg=hriSec2}
 \begin{block}{Block mit anderer Farbe}
 	In diesem Block wird eine weitere Sekundärfarbe verwendet.
 \end{block}
 \endgroup
 \begin{lstlisting}
 \begingroup
-\setbeamercolor{block title}{bg=hsrmSec2Dark}
-\setbeamercolor{block body}{bg=hsrmSec2}
+\setbeamercolor{block title}{bg=hriSec2Dark}
+\setbeamercolor{block body}{bg=hriSec2}
 \begin{block}{Block mit anderer Farbe}
 	In diesem Block wird ...
 \end{block}
@@ -467,12 +457,12 @@ F(\textrm{j}\omega) = \int\limits_{-\infty}^{\infty} f(t)\cdot\textrm{e}^{-\text
 \centering
 \begin{tikzpicture}[scale=0.88]
 	%\tikzset{every child/.append style={level distance=250}}
-	\path[mindmap,concept color=hsrmWarmGreyLight,text=hsrmWarmGreyDark]
+	\path[mindmap,concept color=hriWarmGreyLight,text=hriWarmGreyDark]
 	node[concept] {\TeX}
 	[clockwise from=-30]
-	child[concept color=hsrmSec2Dark,text=white] { node[concept] {\textcolor{white}{\XeTeX}} }
-	child[concept color=hsrmSec1CompDark,text=white] { node[concept] {\ConTeXt} }
-	child[concept color=hsrmSec1Dark,text=white] { node[concept] {\LaTeX} };
+	child[concept color=hriSec2Dark,text=white] { node[concept] {\textcolor{white}{\XeTeX}} }
+	child[concept color=hriSec1CompDark,text=white] { node[concept] {\ConTeXt} }
+	child[concept color=hriSec1Dark,text=white] { node[concept] {\LaTeX} };
 \end{tikzpicture}
 \end{frame}
 
@@ -549,7 +539,7 @@ F(\textrm{j}\omega) = \int\limits_{-\infty}^{\infty} f(t)\cdot\textrm{e}^{-\text
 \end{frame}
 
 \begin{frame}{Fragen, Anmerkungen, Kontakt}
-	Das HSRM Theme steht unter der \quoted{GNU Public License}. Es darf also weitergegeben und modifiziert werden, sofern die Lizenzart beibehalten wird.
+	Das hri Theme steht unter der \quoted{GNU Public License}. Es darf also weitergegeben und modifiziert werden, sofern die Lizenzart beibehalten wird.
 	
 	Für Fragen und Anmerkungen stehe ich gerne zur Verfügung.
 	\begin{itemize}

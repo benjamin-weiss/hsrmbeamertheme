@@ -1,16 +1,10 @@
-% Name           : beamerthemehsrm.sty
+% Name           : beamerthemehri.sty
+% Author         : Séverin Lemaignan (severin.lemaignan@epfl.ch)
 % Author         : Benjamin Weiss (benjamin.weiss@kreatiefton.de)
-% Version        : 0.4
-% Created on     : 05.05.2013
-% Last Edited on : 24.03.2014
-% Copyright      : Copyright (c) 2013-2014 by Benjamin Weiss. All rights reserved.
 % License        : This file may be distributed and/or modified under the
 %                  GNU Public License.
-% Description    : Beamer theme that complies with the corporate design of
-%                  the RheinMain University of Applied Sciences.
-%                   --> http://www.hs-rm.de
 
-\ProvidesPackage{beamerthemehsrm}[2013/05/05]
+\ProvidesPackage{beamerthemehri}[2013/05/05]
 
 \usepackage{eso-pic}
 
@@ -55,37 +49,37 @@
 %---------------------------------------------------------------------
 
 % Primary Colors
-\definecolor{hsrmRed}{rgb}{0.882352941,0,0.098039216}
-\definecolor{hsrmRedDark}{rgb}{0.588235294,0,0.058823529}
-\definecolor{hsrmWarmGreyDark}{rgb}{0.274509804,0.254901961,0.235294118}
-\definecolor{hsrmWarmGreyLight}{rgb}{0.666666667,0.647058824,0.62745098}
+\definecolor{hriRed}{rgb}{0.882352941,0,0.098039216}
+\definecolor{hriRedDark}{rgb}{0.588235294,0,0.058823529}
+\definecolor{hriWarmGreyDark}{rgb}{0.274509804,0.254901961,0.235294118}
+\definecolor{hriWarmGreyLight}{rgb}{0.666666667,0.647058824,0.62745098}
 
 % Secondary Colors
-\definecolor{hsrmSec1}{rgb}{0,0.588235294,0.509803922}
-\definecolor{hsrmSec1Dark}{rgb}{0,0.392156863,0.31372549}
-\definecolor{hsrmSec1Comp}{rgb}{0.294117647,0.745098039,0.882352941}
-\definecolor{hsrmSec1CompDark}{rgb}{0.196078431,0.490196078,0.568627451}
+\definecolor{hriSec1}{rgb}{0,0.588235294,0.509803922}
+\definecolor{hriSec1Dark}{rgb}{0,0.392156863,0.31372549}
+\definecolor{hriSec1Comp}{rgb}{0.294117647,0.745098039,0.882352941}
+\definecolor{hriSec1CompDark}{rgb}{0.196078431,0.490196078,0.568627451}
 
-\definecolor{hsrmSec2}{rgb}{0.607843137,0.764705882,0.156862745}
-\definecolor{hsrmSec2Dark}{rgb}{0.411764706,0.490196078,0.098039216}
-\definecolor{hsrmSec2Comp}{rgb}{0.254901961,0.156862745,0.509803922}
-\definecolor{hsrmSec2CompDark}{rgb}{0.176470588,0.098039216,0.333333333}
+\definecolor{hriSec2}{rgb}{0.607843137,0.764705882,0.156862745}
+\definecolor{hriSec2Dark}{rgb}{0.411764706,0.490196078,0.098039216}
+\definecolor{hriSec2Comp}{rgb}{0.254901961,0.156862745,0.509803922}
+\definecolor{hriSec2CompDark}{rgb}{0.176470588,0.098039216,0.333333333}
 
-\definecolor{hsrmSec3}{rgb}{0.509803922,0.078431373,0.31372549}
-\definecolor{hsrmSec3Dark}{rgb}{0.338345865,0.058823529,0.196078431}
-\definecolor{hsrmSec3Comp}{rgb}{1,0.509803922,0}
-\definecolor{hsrmSec3CompDark}{rgb}{0.666666667,0.333333333,0}
+\definecolor{hriSec3}{rgb}{0.509803922,0.078431373,0.31372549}
+\definecolor{hriSec3Dark}{rgb}{0.338345865,0.058823529,0.196078431}
+\definecolor{hriSec3Comp}{rgb}{1,0.509803922,0}
+\definecolor{hriSec3CompDark}{rgb}{0.666666667,0.333333333,0}
 
 % General
-\setbeamercolor{normal text}{fg=hsrmWarmGreyDark}
-\setbeamercolor{structure}{fg=hsrmWarmGreyDark}
-\setbeamercolor{alerted text}{fg=hsrmRed}
+\setbeamercolor{normal text}{fg=hriWarmGreyDark}
+\setbeamercolor{structure}{fg=hriWarmGreyDark}
+\setbeamercolor{alerted text}{fg=hriRed}
 \setbeamercolor{example text}{fg=white}
-\setbeamercolor{copyright text}{fg=hsrmWarmGreyLight}
-\setbeamercolor{palette primary}{fg=hsrmWarmGreyDark}
-\setbeamercolor{palette secondary}{fg=hsrmWarmGreyDark,bg=hsrmWarmGreyLight}
-\setbeamercolor{palette tertiary}{fg=black,bg=hsrmWarmGreyLight}
-\setbeamercolor{palette quaternary}{fg=white, bg=hsrmWarmGreyDark}
+\setbeamercolor{copyright text}{fg=hriWarmGreyLight}
+\setbeamercolor{palette primary}{fg=hriWarmGreyDark}
+\setbeamercolor{palette secondary}{fg=hriWarmGreyDark,bg=hriWarmGreyLight}
+\setbeamercolor{palette tertiary}{fg=black,bg=hriWarmGreyLight}
+\setbeamercolor{palette quaternary}{fg=white, bg=hriWarmGreyDark}
 % Titlepage
 \setbeamercolor{title}{parent=normal text}
 \setbeamercolor{subtitle}{parent=normal text}
@@ -95,16 +89,16 @@
 % Blocks
 \setbeamercolor{block title}{parent=palette quaternary}
 \setbeamercolor{block body}{parent=palette secondary}
-\setbeamercolor{block title example}{fg=white, bg=hsrmSec1Dark}
-\setbeamercolor{block body example}{fg=white, bg=hsrmSec1}
-\setbeamercolor{block title alerted}{fg=white, bg=hsrmRedDark}
-\setbeamercolor{block body alerted}{fg=white, bg=hsrmRed}
+\setbeamercolor{block title example}{fg=white, bg=hriSec1Dark}
+\setbeamercolor{block body example}{fg=white, bg=hriSec1}
+\setbeamercolor{block title alerted}{fg=white, bg=hriRedDark}
+\setbeamercolor{block body alerted}{fg=white, bg=hriRed}
 % Notes
-\setbeamercolor{note page}{fg=hsrmWarmGreyDark,bg=hsrmWarmGreyLight}
-\setbeamercolor{note title}{fg=white, bg=hsrmWarmGreyDark}
+\setbeamercolor{note page}{fg=hriWarmGreyDark,bg=hriWarmGreyLight}
+\setbeamercolor{note title}{fg=white, bg=hriWarmGreyDark}
 \setbeamercolor{note date}{parent=note title}
 % Page Number
-\setbeamercolor{page number in head/foot}{fg=hsrmWarmGreyDark}
+\setbeamercolor{page number in head/foot}{fg=hriWarmGreyDark}
 
 %---------------------------------------------------------------------
 % Fonts
@@ -132,15 +126,15 @@
 	% Sans serif math option
 	\if@doSans%
 		\usepackage[no-math]{fontspec}%	
-		\setmainfont{Flama-Light}%
+		\setmainfont{FlamaLight}%
 	\else%
 		\usepackage{fontspec}%	
 		\usefonttheme[onlymath]{serif}%
 	\fi%
-	\newfontfamily\Light{Flama-Light}%
-	\newfontfamily\Book{Flama-Book}%
-	\newfontfamily\Medium{Flama-Medium}%
-	\setsansfont{Flama-Light}%
+	\newfontfamily\Light{FlamaLight}%
+	\newfontfamily\Book{FlamaBook}%
+	\newfontfamily\Medium{FlamaMedium}%
+	\setsansfont{FlamaLight}%
 \fi%
 
 \renewcommand\UrlFont{\Medium}
@@ -221,7 +215,7 @@
 \AtBeginSection[]
 {
 \begingroup
-\setbeamercolor{background canvas}{bg=hsrmWarmGreyDark}
+\setbeamercolor{background canvas}{bg=hriWarmGreyDark}
 \begin{frame}[plain]
 \centering
 \vfill\usebeamerfont{section title}\textcolor{white}{\insertsectionHEAD}\vfill
