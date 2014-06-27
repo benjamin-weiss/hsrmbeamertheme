@@ -324,5 +324,28 @@
     \usebeamerfont{copyright text}{\usebeamercolor[fg]{copyright text}{\vbox{\hsize=\mytempdimen#3}}}\vskip3pt%
 }}
 
+\newcommand\fullbackground[1]{%
+\setbeamertemplate{background}{
+    \includegraphics[width=\paperwidth, height=\paperheight]{#1}
+}
+}
+
+\newcommand\imageframe[2][]{%
+{
+    \setbeamertemplate{background canvas}{
+        \includegraphics[width=\paperwidth, height=\paperheight]{#2}
+    }
+    \setbeamertemplate{background}{}
+    \begin{frame}[plain]
+        \begin{tikzpicture}[remember picture,overlay]%
+            \node at (-1, -4.5) [anchor=south west, shape=rectangle,
+            fill=hriSec3Dark, opacity=0.7, align=right, text width=0.5\paperwidth]
+            {\usebeamerfont{subtitle}\usebeamercolor[bg]{subtitle}#1\par};
+        \end{tikzpicture}
+    \end{frame}
+}
+}
+
+
 \mode
 <all>
