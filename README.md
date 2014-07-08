@@ -2,7 +2,7 @@ HRI Beamer Theme
 ================
 
 A nice looking Beamer theme, based on HSRM Beamer theme by
-[Benjamin.Weiss@kreatiefton.de](mailto:Benjamin.Weiss@kreatiefton.de), with a
+[Benjamin Weiss](mailto:Benjamin.Weiss@kreatiefton.de), with a
 few improvements like full-screen pictures and videos. [Download the
 pre-compiled demo presentation](https://github.com/severin-lemaignan/hri-beamer-theme/blob/master/presentation.pdf?raw=true).
 
@@ -37,9 +37,11 @@ Special commands in this theme
 \video[aspect ratio]{width}{myvideo.webm}
 ```
 
-This integrates a video in your presentation. Clicking on it opens the default
-system video player for the given video format (using `pdfpc`, you can also
-play the video directly inside your presentation, cf below).
+This integrates a video in your presentation (attention: the video file
+*itself* is not embedded in the PDF: you need to take it along with your PDF).
+Clicking on it opens the default system video player for the given video format
+(using `pdfpc`, you can also play the video directly inside your presentation,
+cf below).
 
 - `aspect ratio` is a real value equal to height/width, defaults to 16:9 (ie,
   0.56)
