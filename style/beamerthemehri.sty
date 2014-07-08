@@ -119,35 +119,35 @@
 
 % Declare fontfamilys
 \if@doNoFlama%
-	% Sans serif math option
-	\if@doSans%
-		% sans serif math %
-		\usepackage[no-math]{fontspec}%	
-		\setmainfont{Arial}%
-	\else%
-		% serif math %
-		\usepackage{fontspec}%	
-		\usefonttheme[onlymath]{serif}%
-	\fi%
-	\newfontfamily\Light{Arial}%
-	\newfontfamily\Book{Arial-Bold}%
-	\newfontfamily\Medium{Arial-Bold}%
-	\setsansfont{Arial}%
+    % Sans serif math option
+    \if@doSans%
+        % sans serif math %
+        \usepackage[no-math]{fontspec}%    
+        \setmainfont{Arial}%
+    \else%
+        % serif math %
+        \usepackage{fontspec}%    
+        \usefonttheme[onlymath]{serif}%
+    \fi%
+    \newfontfamily\Light{Arial}%
+    \newfontfamily\Book{Arial-Bold}%
+    \newfontfamily\Medium{Arial-Bold}%
+    \setsansfont{Arial}%
 \else%
-	% Sans serif math option
-	\if@doSans%
-		\usepackage[no-math]{fontspec}%	
-		\setmainfont{FlamaLight}%
-	\else%
-		\usepackage{fontspec}%	
-		\usefonttheme[onlymath]{serif}%
-	\fi%
+    % Sans serif math option
+    \if@doSans%
+        \usepackage[no-math]{fontspec}%    
+        \setmainfont{FlamaLight}%
+    \else%
+        \usepackage{fontspec}%    
+        \usefonttheme[onlymath]{serif}%
+    \fi%
         \usepackage{fontspec}
     \defaultfontfeatures{Ligatures=TeX} % To support LaTeX quoting style
-	\newfontfamily\Light{FlamaLight}%
-	\newfontfamily\Book{FlamaBook}%
-	\newfontfamily\Medium{FlamaMedium}%
-	\setsansfont{FlamaLight}%
+    \newfontfamily\Light{FlamaLight}%
+    \newfontfamily\Book{FlamaBook}%
+    \newfontfamily\Medium{FlamaMedium}%
+    \setsansfont{FlamaLight}%
 \fi%
 
 \renewcommand\UrlFont{\Medium}
@@ -180,39 +180,39 @@
 }
 \setbeamertemplate{title page}
 {
-	% Add background to title page
-	\AddToShipoutPictureFG*{\includegraphics[width=\paperwidth]{background.pdf}}
-	\begin{minipage}[b][\paperheight]{\textwidth}
-	\vspace*{5mm}
-	\includegraphics[height=14mm]{logo}\par
-	\vspace*{5mm}
-	\ifx\insertsubtitle\@empty%
-	\else%
-		{\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par}%
-	\fi%
-	\ifx\insertsubtitle\@empty%
-	\else%
-		{\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
-		\vspace*{5mm}
-	\fi%
-	\ifx\insertdate\@empty%
-	\else%
-		{\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate\par}%
-	\fi% 
-	
-	\vfill
-	
-	\ifx\insertauthor\@empty%
-	\else%
-		{\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par}%
-	\fi%
-	\ifx\insertinstitut\@empty%
-	\else%
-		\vspace*{3mm}
-		{\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\par}%
-	\fi% 
-	\vspace*{5mm}
-	\end{minipage}
+    % Add background to title page
+    \AddToShipoutPictureFG*{\includegraphics[width=\paperwidth]{background.pdf}}
+    \begin{minipage}[b][\paperheight]{\textwidth}
+    \vspace*{5mm}
+    \includegraphics[height=14mm]{logo}\par
+    \vspace*{5mm}
+    \ifx\insertsubtitle\@empty%
+    \else%
+        {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par}%
+    \fi%
+    \ifx\insertsubtitle\@empty%
+    \else%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+        \vspace*{5mm}
+    \fi%
+    \ifx\insertdate\@empty%
+    \else%
+        {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate\par}%
+    \fi% 
+
+    \vfill
+
+    \ifx\insertauthor\@empty%
+    \else%
+        {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par}%
+    \fi%
+    \ifx\insertinstitut\@empty%
+    \else%
+        \vspace*{3mm}
+        {\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\par}%
+    \fi% 
+    \vspace*{5mm}
+    \end{minipage}
 }
 
 %---------------------------------------------------------------------
@@ -221,8 +221,8 @@
 
 % Make Sectionhead uppercase
 \newcommand{\insertsectionHEAD}{%
-	\expandafter\insertsectionHEADaux\insertsectionhead}
-	\newcommand{\insertsectionHEADaux}[3]{\MakeUppercase{#3}
+    \expandafter\insertsectionHEADaux\insertsectionhead}
+    \newcommand{\insertsectionHEADaux}[3]{\MakeUppercase{#3}
 }
 
 \if@doSectionPage\@empty
@@ -247,7 +247,7 @@
 \setbeamertemplate{frametitle}
 {
 \begin{beamercolorbox}[wd=\paperwidth,leftskip=0.3cm,rightskip=0.3cm,ht=3ex,dp=1.5ex]{frametitle}
-	 \usebeamerfont{frametitle}\MakeUppercase{\insertframetitle}%
+     \usebeamerfont{frametitle}\MakeUppercase{\insertframetitle}%
 \end{beamercolorbox}
 }
 
@@ -337,31 +337,31 @@
 
 \newcommand\imageframe[2][]{%
     {
-    \setbeamertemplate{background canvas}{
-        \includegraphics[width=\paperwidth,height=\paperheight]{#2}
-    }
-    \setbeamertemplate{background}{}
-    \begin{frame}[plain]
-        \ifstrempty{#1}{ 
-            % #1 is empty
-        }{
-            \begin{tikzpicture}[remember picture,overlay]
-                \node at (-1, -4.5) [anchor=south west,shape=rectangle,fill=hriSec3Dark, opacity=0.7, align=right, text width=0.6\paperwidth]
-                {\usebeamerfont{subtitle}\usebeamercolor[bg]{subtitle}#1\par};
-            \end{tikzpicture}
+        \setbeamertemplate{background canvas}{
+            \includegraphics[width=\paperwidth,height=\paperheight]{#2}
         }
-    \end{frame}
+        \setbeamertemplate{background}{}
+        \begin{frame}[plain]
+            \ifstrempty{#1}{ 
+                % #1 is empty
+            }{
+                \begin{tikzpicture}[remember picture,overlay]
+                    \node at (-1, -4.5) [anchor=south west,shape=rectangle,fill=hriSec3Dark, opacity=0.7, align=right, text width=0.6\paperwidth]
+                    {\usebeamerfont{subtitle}\usebeamercolor[bg]{subtitle}#1\par};
+                \end{tikzpicture}
+            }
+        \end{frame}
     }
 }
 
 % for a video like: figs/video1.mpg, an image called figs/video1_thumb.jpg
 % exists, it is used to preview the video. Otherwise a blank object is returned.
 \newcommand{\includepreview}[1]{{
-    \makeatletter
-    \filename@parse{#1}
-    \edef\videoThumb{\filename@area\filename@base_thumb.jpg}%
-    \makeatother
-    \IfFileExists{\videoThumb}{\includegraphics{\videoThumb}}{\phantom{a}}
+        \makeatletter
+        \filename@parse{#1}
+        \edef\videoThumb{\filename@area\filename@base_thumb.jpg}%
+        \makeatother
+        \IfFileExists{\videoThumb}{\includegraphics{\videoThumb}}{\phantom{a}}
 }}
 
 % the optional argument is the aspect ratio
@@ -388,12 +388,12 @@
 }
 
 \newcommand\video[3][]{%
-        \ifstrempty{#1}{ 
-            % #1 is empty, we assume an aspect ratio of 16:9
-            \href{run:#3}{\resizebox{#2}{#2*\real{0.56}}{\includepreview{#3}}}
-        }{
-            \href{run:#3}{\resizebox{#2}{#2*\real{#1}}{\includepreview{#3}}}
-        }
+    \ifstrempty{#1}{ 
+        % #1 is empty, we assume an aspect ratio of 16:9
+        \href{run:#3}{\resizebox{#2}{#2*\real{0.56}}{\includepreview{#3}}}
+    }{
+        \href{run:#3}{\resizebox{#2}{#2*\real{#1}}{\includepreview{#3}}}
+    }
 }
 
 \newcommand\paper[1]{%
