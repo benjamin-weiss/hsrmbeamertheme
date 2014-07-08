@@ -57,7 +57,7 @@ EPFL}}
 %--------------------------------------------------------------------------
 % Notes settings
 %--------------------------------------------------------------------------
-\setbeameroption{show notes on second screen}
+%\setbeameroption{show notes on second screen}
 
 \begin{document}
 %--------------------------------------------------------------------------
@@ -85,24 +85,21 @@ EPFL}}
 \section{Introduction}
 
 \begin{frame}{Theme options}
-Um die Darstellung der Präsentation anzupassen können die folgenden Optionen gewählt werden.
 \begin{table}[]
 	\begin{tabularx}{\linewidth}{l>{\raggedright}X}
 		\toprule
-		\textbf{Option}			& \textbf{Auswirkung} \tabularnewline
+		\textbf{Option}			& \textbf{Effect} \tabularnewline
 		\midrule
-		\texttt{noflama}		& Falls Sie die Schrift Flama nicht besitzen können Sie mit dieser Option auf die Schrift Arial umschalten. \tabularnewline
-		\texttt{noserifmath}		& Formeln werden ebenfalls serifenlos gesetzt. \tabularnewline
-		\texttt{nosectionpages} & Die Sektionseinleitungsseiten werden ausgeblendet.\tabularnewline
+		\texttt{noflama}		& Use Arial instead of Flama \tabularnewline
+		\texttt{noserifmath}		& Math formula typeset in sans-serif \tabularnewline
+		\texttt{nosectionpages} & No inter-section pages \tabularnewline
 		\bottomrule
 	\end{tabularx}
 	\label{tab:options}
 \end{table}
 \end{frame}
 
-\begin{frame}{Primärfarben}									
-Alle Farben des Corporate Designs sind im Template hinterlegt.
-
+\begin{frame}{Colors 1/2}									
 
 \begin{multicols}{2}
 
@@ -144,7 +141,7 @@ Alle Farben des Corporate Designs sind im Template hinterlegt.
 
 \end{frame}
 
-\begin{frame}{Sekundärfarben}
+\begin{frame}{Colors 2/2}
 \begin{multicols}{2}
 
 \setbeamercolor{hriSec1Demo}{fg=hriSec1,bg=white}
@@ -252,10 +249,10 @@ Alle Farben des Corporate Designs sind im Template hinterlegt.
 \end{multicols}
 \end{frame}
 
-\begin{frame}[containsverbatim]{Folienstruktur}
-Strukturiert wird in Beamer wie in \LaTeX\ üblich mittels \lstinline!section!, \lstinline!subsection!, usw. Für Folien ist die \lstinline!frame! Umgebung definiert.
+\begin{frame}[containsverbatim]{Code}
 
-Der Folientitel kann direkt an die \lstinline!frame! Umgebung übergeben werden oder mittels \lstinline!\frametitle{Folientitel}! innerhalb der Umgebung gesetzt werden.
+A slide with some code
+
 \begin{lstlisting}
 \section{Meine Sektion}
 \subsection{Meine Subsektion}
@@ -266,105 +263,23 @@ Der Folientitel kann direkt an die \lstinline!frame! Umgebung übergeben werden 
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[containsverbatim]{Titelseite und Inhaltsverzeichnis}
-Die Titelseite erzeugt man mit 
-\begin{lstlisting}
-\maketitle
-\end{lstlisting}
-Und das Inhaltsverzeichnis mit
-\begin{lstlisting}
-\begin{frame}{Gliederung}
-	\tableofcontents[hideallsubsections]
-\end{frame}
-\end{lstlisting}
-Die Option \lstinline!hideallsubsections! bietet sich bei längeren Präsentationen an, um das Inhaltsverzeichnis kompakt zu halten.
-\end{frame}
 
-\subsection{Aufzählungen}
-\begin{frame}[containsverbatim]{Aufzählungen}
-Aufzählungen sind mit der \lstinline!enumerate! und der \lstinline!itemize! Umgebung möglich.
-\begin{enumerate}
-	\item Punkt 1
-	\item Punkt 2
-	\begin{itemize}
-		\item Punkt 1
-		\item Punkt 2
-	\end{itemize}
-	\item Punkt 3
-\end{enumerate}
-\end{frame}
-
-\subsection{Hervorhebungen}
-\begin{frame}[containsverbatim]{Hervorhebungen}
-In der Beamer Klasse ist die Funktion \lstinline!\alert! definiert, um einzelne Wörter hervorzuheben. Beispiel:
-\begin{itemize}
-	\item \alert{hervorgehobener Text}
-\end{itemize}
-Zusätzlich sind im hri Theme noch \lstinline!\quoted! und \lstinline!\doublequoted! definiert, um die Anführungszeichen des Corporate Designs der Hochschule einfach im Zugriff zu haben. Beispiele:
-\begin{itemize}
-	\item[] \quoted{Einfache Anführungszeichen}
-	\item[] \doublequoted{Doppelte Anführungszeichen}
-\end{itemize}
-\end{frame}
-
-\subsection{Blockstrukturen}
-\begin{frame}[containsverbatim]{Einfacher Block mit Aufzählung}
-Zur Strukturierung sind in Beamer Blockumgebungen definiert.
-\begin{block}{Block mit einer Aufzählung}
-	\begin{itemize}
-		\item Punkt 1
-		\item Punkt 2
-	\end{itemize}
-\end{block}
-\begin{lstlisting}
-\begin{block}{Block mit einer Aufzählung}
-	\begin{itemize}
-		\item Punkt 1
-		\item Punkt 2
-	\end{itemize}
-\end{block}
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[containsverbatim]{Alert Block}
-\begin{alertblock}{Alert Block}
-	Ein Alert Block wird mit der ersten Primärfarbe eingefärbt.
+\begin{frame}[containsverbatim]{Blocks}
+\begin{alertblock}{Alert block}
+	Aaaaaaagh!
 \end{alertblock}
-\begin{lstlisting}
-\begin{alertblock}{Alert Block}
-Ein Alert Block wird mit der ersten Primärfarbe eingefärbt.
-\end{alertblock}
-\end{lstlisting}
-\end{frame}
 
-\begin{frame}[containsverbatim]{Example Block}
-\begin{exampleblock}{Example Block}
-	Ein Example Block wird mit der ersten Sekundärfarbe eingefärbt.
+\begin{exampleblock}{Example block}
+    Ooooohh!
 \end{exampleblock}
-\begin{lstlisting}
-\begin{exampleblock}{Example Block}
-Ein Example Block wird mit der ersten Sekundärfarbe eingefärbt.
-\end{exampleblock}
-\end{lstlisting}
-\end{frame}
 
-\begin{frame}[containsverbatim]{Block mit anderer Farbe}
 \begingroup
 \setbeamercolor{block title}{bg=hriSec2Dark}
 \setbeamercolor{block body}{bg=hriSec2}
-\begin{block}{Block mit anderer Farbe}
-	In diesem Block wird eine weitere Sekundärfarbe verwendet.
+\begin{block}{Block with custom color}
+    Oulala!
 \end{block}
 \endgroup
-\begin{lstlisting}
-\begingroup
-\setbeamercolor{block title}{bg=hriSec2Dark}
-\setbeamercolor{block body}{bg=hriSec2}
-\begin{block}{Block mit anderer Farbe}
-	In diesem Block wird ...
-\end{block}
-\endgroup
-\end{lstlisting}
 \end{frame}
 
 \section{Content Examples}
@@ -536,13 +451,25 @@ F(\textrm{j}\omega) = \int\limits_{-\infty}^{\infty} f(t)\cdot\textrm{e}^{-\text
 \end{frame}
 
 \subsection{Video clips}
+
 \begin{frame}{Video clip}
-        \href{run:videoclip.webm}{Hello}
-        \href{run:videoclip.webm}{\includegraphics[width=0.5\textwidth]{videoclip_thumb.jpg}}
-    \begin{center}
-    \end{center}
+    \centering
+    \video{4cm}{videoclip.webm}
+
 \end{frame}
 
+\videoframe{videoclip.webm}
+
+
+\subsection{References on page}
+
+{
+    \paper{G\"odel et al., {\Medium Life is incomplete}, 1923}
+
+    \begin{frame}{Litterature reference}
+        You can add a reference to a paper in the page footer.
+    \end{frame}
+}
 
 
 
@@ -560,50 +487,18 @@ takimata sanctus est Lorem ipsum dolor sit amet.
 
 \end{frame}
 
-\subsection{Notizen}
-\begin{frame}{Folie mit dazugehöriger Notizfolie}
-    Für das Publikum ist diese Folie.
-
-	Für ihre Präsentation bieten sich folgende Programme an:
-	\begin{itemize}
-		\item Splitshow (Mac OS X)\\\url{https://code.google.com/p/splitshow/}
-		\item pdf-presenter (Windows)\\\url{https://code.google.com/p/pdf-presenter/}
-	\end{itemize}
+\subsection{Columns}
+\begin{frame}{Two Columns}
+    \begin{multicols}{2}
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        \begin{itemize}
+            \item item
+            \item item
+        \end{itemize}
+    \end{multicols}
 \end{frame}
 
-\note{
-    Für Ihre Notizen zum Vortrag vewenden Sie diese Folie.
-    
-	Für ihre Präsentation bieten sich folgende Programme an:
-	\begin{itemize}
-		\item Splitshow (Mac OS X)\\\url{https://code.google.com/p/splitshow/}
-		\item pdf-presenter (Windows)\\\url{https://code.google.com/p/pdf-presenter/}
-	\end{itemize} 
-}
-
-\subsection{Spalten}
-\begin{frame}{Zwei Spalten}
-	\begin{multicols}{2}
-		Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-		\begin{itemize}
-        	\item ein Eintrag
-        	\item noch ein Eintrag
-		\end{itemize}
-	\end{multicols}
-\end{frame}
-
-\begin{frame}{Spaltenumbruch}
-	\begin{multicols}{2}
-		Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-		\columnbreak
-		\begin{itemize}
-        	\item ein Eintrag
-        	\item noch ein Eintrag
-		\end{itemize}
-	\end{multicols}
-\end{frame}
-
-\begin{frame}{Literaturverzeichnis}
+\begin{frame}{Bibliography}
 	\begin{thebibliography}{10}
     
 	\beamertemplatebookbibitems
