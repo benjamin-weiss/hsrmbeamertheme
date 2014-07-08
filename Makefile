@@ -1,4 +1,5 @@
 
+LATEX=lualatex
 TARGET=presentation.tex
 
 DOT=$(wildcard figs/*.dot)
@@ -15,13 +16,17 @@ all: paper
 
 	twopi -Tsvg -o$(@) $(<)
 
+thumbs:
+
+	python make_video_preview.py ${TARGET}
+
 bib: $(TARGET:.tex=.aux)
 
 	BSTINPUTS=:./sty bibtex $(TARGET:.tex=.aux)
 
 paper: $(TARGET) $(SVG:.svg=.pdf) $(DOT:.dot=.pdf)
 
-	TEXINPUTS=:./sty xelatex $(TARGET)
+	TEXINPUTS=:./sty $(LATEX) $(TARGET)
 
 clean:
 	rm -f *.spl *.idx *.aux *.log *.snm *.out *.toc *.nav *intermediate *~ *.glo *.ist *.bbl *.blg $(SVG:.svg=.pdf) $(DOT:.dot=.svg) $(DOT:.dot=.pdf)
