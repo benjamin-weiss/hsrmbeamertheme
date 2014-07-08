@@ -4,7 +4,7 @@ HRI Beamer Theme
 A nice looking Beamer theme, based on HSRM Beamer theme by
 [Benjamin.Weiss@kreatiefton.de](mailto:Benjamin.Weiss@kreatiefton.de), with a
 few improvements like full-screen pictures and videos. [Download the
-pre-compiled demo presentation](presentation.pdf).
+pre-compiled demo presentation](https://github.com/severin-lemaignan/hri-beamer-theme/blob/master/presentation.pdf?raw=true).
 
 ![Title page](doc/ex1.jpg)
 ![TikZ figure](doc/ex3.jpg)
