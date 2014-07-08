@@ -10,7 +10,8 @@ pre-compiled demo presentation](https://github.com/severin-lemaignan/hri-beamer-
 ![TikZ figure](doc/ex3.jpg)
 
 
-This Beamer theme requires `lualatex` for compilation (available in the `TeXlive` distribution for example).
+To compile, simply run `make`. This Beamer theme requires `lualatex` for
+compilation (available in the `TeXlive` distribution for example).
 
 It also looks nicer if the Flama font is installed in your system. Download it from here: 
 - [Flama Light](http://fontpark.net/en/font/flamalight)
