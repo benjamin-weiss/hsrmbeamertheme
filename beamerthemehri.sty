@@ -6,6 +6,8 @@
 
 \ProvidesPackage{beamerthemehri}[2013/05/05]
 
+\usepackage{color}
+\usepackage{etoolbox}
 \usepackage{eso-pic}
 
 \newif\if@doSans
@@ -140,6 +142,8 @@
 		\usepackage{fontspec}%	
 		\usefonttheme[onlymath]{serif}%
 	\fi%
+        \usepackage{fontspec}
+    \defaultfontfeatures{Ligatures=TeX} % To support LaTeX quoting style
 	\newfontfamily\Light{FlamaLight}%
 	\newfontfamily\Book{FlamaBook}%
 	\newfontfamily\Medium{FlamaMedium}%
@@ -184,7 +188,7 @@
 	\vspace*{5mm}
 	\ifx\insertsubtitle\@empty%
 	\else%
-		{\usebeamerfont{title}\usebeamercolor[fg]{title}\MakeUppercase{\inserttitle}\par}%
+		{\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par}%
 	\fi%
 	\ifx\insertsubtitle\@empty%
 	\else%
@@ -254,8 +258,8 @@
 \setbeamertemplate{footline}
 {%
 \begin{beamercolorbox}[wd=\textwidth,ht=3ex,dp=1.5ex,leftskip=0.3cm,rightskip=0.3cm]{structure}%
-\hfill\usebeamerfont{page number in head/foot}%
-\insertframenumber%
+\usebeamerfont{page number in head/foot}%
+\hfill\insertframenumber%
 \end{beamercolorbox}%
 }
 
@@ -315,6 +319,7 @@
 % Images
 %---------------------------------------------------------------------
 
+
 \newbox\mytempbox
 \newdimen\mytempdimen
 
@@ -331,19 +336,74 @@
 }
 
 \newcommand\imageframe[2][]{%
-{
+    {
     \setbeamertemplate{background canvas}{
-        \includegraphics[width=\paperwidth, height=\paperheight]{#2}
+        \includegraphics[width=\paperwidth,height=\paperheight]{#2}
     }
     \setbeamertemplate{background}{}
     \begin{frame}[plain]
-        \begin{tikzpicture}[remember picture,overlay]%
-            \node at (-1, -4.5) [anchor=south west, shape=rectangle,
-            fill=hriSec3Dark, opacity=0.7, align=right, text width=0.5\paperwidth]
-            {\usebeamerfont{subtitle}\usebeamercolor[bg]{subtitle}#1\par};
-        \end{tikzpicture}
+        \ifstrempty{#1}{ 
+            % #1 is empty
+        }{
+            \begin{tikzpicture}[remember picture,overlay]
+                \node at (-1, -4.5) [anchor=south west,shape=rectangle,fill=hriSec3Dark, opacity=0.7, align=right, text width=0.6\paperwidth]
+                {\usebeamerfont{subtitle}\usebeamercolor[bg]{subtitle}#1\par};
+            \end{tikzpicture}
+        }
     \end{frame}
+    }
 }
+
+% for a video like: figs/video1.mpg, an image called figs/video1_thumb.jpg
+% exists, it is used to preview the video. Otherwise a blank object is returned.
+\newcommand{\includepreview}[1]{{
+    \makeatletter
+    \filename@parse{#1}
+    \edef\videoThumb{\filename@area\filename@base_thumb.jpg}%
+    \makeatother
+    \IfFileExists{\videoThumb}{\includegraphics{\videoThumb}}{\phantom{a}}
+}}
+
+% the optional argument is the aspect ratio
+% (default to 16:9)
+% for instance, for 16:9 (9/16 = 0.56): \videoframe[0.56]{myvideo.webm}
+\newcommand\videoframe[2][]{%
+    {
+        \setbeamertemplate{background canvas}{
+            \noindent\colorbox{black}{%
+                \parbox[c][\paperheight][c]{\paperwidth}{%
+                    \ifstrempty{#1}{ 
+                        % #1 is empty
+                        \href{run:#2}{\resizebox{\paperwidth}{0.56\paperheight}{\includepreview{#2}}}
+                    }{
+                        \href{run:#2}{\resizebox{\paperwidth}{#1\paperwidth}{\includepreview{#2}}}
+                    }
+                }
+            }
+        }
+        \setbeamertemplate{background}{}
+        \begin{frame}[plain]
+        \end{frame}
+    }
+}
+
+\newcommand\video[3][]{%
+        \ifstrempty{#1}{ 
+            % #1 is empty, we assume an aspect ratio of 16:9
+            \href{run:#3}{\resizebox{#2}{#2*\real{0.56}}{\includepreview{#3}}}
+        }{
+            \href{run:#3}{\resizebox{#2}{#2*\real{#1}}{\includepreview{#3}}}
+        }
+}
+
+\newcommand\paper[1]{%
+    \setbeamertemplate{footline}
+    {%
+        \begin{beamercolorbox}[wd=\textwidth,ht=3ex,dp=1.5ex,leftskip=0.3cm,rightskip=0.3cm]{structure}%
+            \usebeamerfont{page number in head/foot}%
+            [#1]\mbox{}\hfill\insertframenumber%
+        \end{beamercolorbox}%
+    }
 }
 
 
