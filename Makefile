@@ -22,11 +22,11 @@ thumbs:
 
 bib: $(TARGET:.tex=.aux)
 
-	BSTINPUTS=:./sty bibtex $(TARGET:.tex=.aux)
+	BSTINPUTS=:./style bibtex $(TARGET:.tex=.aux)
 
 paper: $(TARGET) $(SVG:.svg=.pdf) $(DOT:.dot=.pdf)
 
-	TEXINPUTS=:./sty $(LATEX) $(TARGET)
+	TEXINPUTS=:./style $(LATEX) $(TARGET)
 
 clean:
 	rm -f *.spl *.idx *.aux *.log *.snm *.out *.toc *.nav *intermediate *~ *.glo *.ist *.bbl *.blg $(SVG:.svg=.pdf) $(DOT:.dot=.svg) $(DOT:.dot=.pdf)
