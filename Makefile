@@ -18,7 +18,7 @@ all: paper
 
 thumbs:
 
-	python make_video_preview.py ${TARGET}
+	./make_video_preview.py ${TARGET}
 
 bib: $(TARGET:.tex=.aux)
 

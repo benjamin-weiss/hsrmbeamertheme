@@ -1,6 +1,12 @@
+#! /usr/bin/env python
+
 import sys
 import re
 from subprocess import call
+
+if len(sys.argv) < 2:
+    print("Usage: %s <presentation.tex>" % sys.argv[0])
+    sys.exit(1)
 
 video = re.compile('.*video.*{(?P<file>.*\..*?)(\?.*?(start=(?P<starttime>\d*).*)?)?}')
 with open(sys.argv[1],'r') as tex:
