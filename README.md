@@ -45,7 +45,7 @@ Clicking on it opens the default system video player for the given video format
 cf below).
 
 - `aspect ratio` is a real value equal to height/width, defaults to 16:9 (ie,
-  0.56)
+  0.56).
 - `width` is any valid Beamer length (like `0.7\textwidth` for instance)
 
 A preview picture (typically, the first frame of the video) is used if a file
@@ -72,7 +72,8 @@ You can also produce a full-screen video frame with:
 \videoframe[aspect ratio]{myvideo.webm}
 ```
 
-`aspect ratio` has the same default as for `\video` (ie, 16:9).
+`aspect ratio` defaults to 4:3 (ie, fullscreen on Beamer). Set it to 0.56
+(=9/16) for 16:9 for instance.
 
 ### Bibliography references
 
