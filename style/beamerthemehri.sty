@@ -337,20 +337,20 @@
 
 \newcommand\imageframe[2][]{%
     {
-        \setbeamertemplate{background canvas}{
-            \includegraphics[width=\paperwidth,height=\paperheight]{#2}
+    \setbeamertemplate{background canvas}{
+        \includegraphics[width=\paperwidth,height=\paperheight]{#2}
+    }
+    \setbeamertemplate{background}{}
+    \begin{frame}[plain]
+        \ifstrempty{#1}{ 
+            % #1 is empty
+        }{
+            \begin{tikzpicture}[remember picture,overlay]
+                \node at (-1, -4.5) [anchor=south west,shape=rectangle,fill=hriSec3Dark, opacity=0.7, align=right, text width=0.6\paperwidth]
+                {\usebeamerfont{subtitle}\usebeamercolor[bg]{subtitle}#1\par};
+            \end{tikzpicture}
         }
-        \setbeamertemplate{background}{}
-        \begin{frame}[plain]
-            \ifstrempty{#1}{ 
-                % #1 is empty
-            }{
-                \begin{tikzpicture}[remember picture,overlay]
-                    \node at (-1, -4.5) [anchor=south west,shape=rectangle,fill=hriSec3Dark, opacity=0.7, align=right, text width=0.6\paperwidth]
-                    {\usebeamerfont{subtitle}\usebeamercolor[bg]{subtitle}#1\par};
-                \end{tikzpicture}
-            }
-        \end{frame}
+    \end{frame}
     }
 }
 
@@ -365,35 +365,35 @@
 }}
 
 % the optional argument is the aspect ratio
-% (default to 16:9)
+% (default to full-screen, ie 4:3 for Beamer)
 % for instance, for 16:9 (9/16 = 0.56): \videoframe[0.56]{myvideo.webm}
 \newcommand\videoframe[2][]{%
-    {
-        \setbeamertemplate{background canvas}{
+{
+    \setbeamertemplate{background canvas}{
+        \ifstrempty{#1}{ 
+            % #1 is empty
+            \href{run:#2}{\resizebox{\paperwidth}{\paperheight}{\includepreview{#2}}}
+        }{
             \noindent\colorbox{black}{%
                 \parbox[c][\paperheight][c]{\paperwidth}{%
-                    \ifstrempty{#1}{ 
-                        % #1 is empty
-                        \href{run:#2}{\resizebox{\paperwidth}{0.56\paperheight}{\includepreview{#2}}}
-                    }{
-                        \href{run:#2}{\resizebox{\paperwidth}{#1\paperwidth}{\includepreview{#2}}}
-                    }
-                }
+                    \href{run:#2}{\resizebox{\paperwidth}{#1\paperwidth}{\includepreview{#2}}}
+            }
             }
         }
-        \setbeamertemplate{background}{}
-        \begin{frame}[plain]
-        \end{frame}
     }
+    \setbeamertemplate{background}{}
+    \begin{frame}[plain]
+    \end{frame}
+}
 }
 
 \newcommand\video[3][]{%
-    \ifstrempty{#1}{ 
-        % #1 is empty, we assume an aspect ratio of 16:9
-        \href{run:#3}{\resizebox{#2}{#2*\real{0.56}}{\includepreview{#3}}}
-    }{
-        \href{run:#3}{\resizebox{#2}{#2*\real{#1}}{\includepreview{#3}}}
-    }
+        \ifstrempty{#1}{ 
+            % #1 is empty, we assume an aspect ratio of 16:9
+            \href{run:#3}{\resizebox{#2}{#2*\real{0.56}}{\includepreview{#3}}}
+        }{
+            \href{run:#3}{\resizebox{#2}{#2*\real{#1}}{\includepreview{#3}}}
+        }
 }
 
 \newcommand\paper[1]{%
