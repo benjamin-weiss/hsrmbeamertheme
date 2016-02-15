@@ -247,7 +247,7 @@
 \setbeamertemplate{frametitle}
 {
 \begin{beamercolorbox}[wd=\paperwidth,leftskip=0.3cm,rightskip=0.3cm,ht=3ex,dp=1.5ex]{frametitle}
-     \usebeamerfont{frametitle}\MakeUppercase{\insertframetitle}%
+	 \usebeamerfont{frametitle}\MakeUppercase{\insertframetitle}%
 \end{beamercolorbox}
 }
 
@@ -365,37 +365,86 @@
 
 \newcommand\fullbackground[1]{%
 \setbeamertemplate{background}{
-    \includegraphics[width=\paperwidth, height=\paperheight]{#1}
+    \includegraphics[width=\paperwidth, height=\paperheight,keepaspectratio]{#1}
 }
 }
 
-\newcommand\imageframe[2][]{%
+\newcommand\imageframe[3][]{%
     {
     \setbeamertemplate{background canvas}{
-        \includegraphics[width=\paperwidth,height=\paperheight]{#2}
+        \ifstrempty{#1}{ 
+            \colorlet{bgcolor}{white}%
+        }{
+            \colorlet{bgcolor}{#1}%
+        }
+        \begin{tikzpicture}[remember picture, overlay,background
+            rectangle/.style={fill=bgcolor}, show background rectangle]
+            \useasboundingbox (current page.north east) rectangle (current page.south west);
+
+            \node at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#3}};
+        \end{tikzpicture}
+
     }
     \setbeamertemplate{background}{}
+
     \begin{frame}[plain]
-        \ifstrempty{#1}{ 
+        \ifstrempty{#2}{ 
             % #1 is empty
         }{
             \begin{tikzpicture}[remember picture,overlay]
                 \node at (-1, -4.5) [anchor=south west,shape=rectangle,fill=hriSec3Dark, opacity=0.7, align=right, text width=0.6\paperwidth]
-                {\usebeamerfont{subtitle}\usebeamercolor[bg]{subtitle}#1\par};
+                {\usebeamerfont{subtitle}\usebeamercolor[bg]{subtitle}#2\par};
             \end{tikzpicture}
         }
     \end{frame}
     }
 }
 
+\newcommand\grid{
+        \draw[help lines] (current page.south west) grid (14,10);
+        \foreach \x in {-5,...,5} {
+            \foreach \y in {-5,...,5} {
+                \node at (\x,\y) [anchor=south west,gray]{{\fontsize{1.2mm}{0.1em}\selectfont (\x,\y)}};
+            }
+        }
+}
+
+\newcommand\bgframe[2][]{%
+    {
+        \setbeamertemplate{background canvas}{
+            \noindent\colorbox{black}{%
+                \parbox[c][\paperheight][c]{\paperwidth}{%
+                    \ifstrempty{#1}{ 
+                        % #1 is empty
+                    }{
+                        \centering
+                        \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#1}
+                    }
+                }
+            }
+        }
+        \setbeamertemplate{background}{}
+
+        \begin{frame}[plain]
+            #2
+    \end{frame}
+    }
+}
+
+
 % for a video like: figs/video1.mpg, an image called figs/video1_thumb.jpg
 % exists, it is used to preview the video. Otherwise a blank object is returned.
 \newcommand{\includepreview}[1]{{
-        \makeatletter
-        \filename@parse{#1}
-        \edef\videoThumb{\filename@area\filename@base_thumb.jpg}%
-        \makeatother
-        \IfFileExists{\videoThumb}{\includegraphics{\videoThumb}}{\phantom{a}}
+    \makeatletter
+    \filename@parse{#1}
+    \edef\videoThumb{\filename@area\filename@base_thumb.jpg}%
+    \makeatother
+    \IfFileExists{\videoThumb}{
+        \begin{tikzpicture}
+            \node at (0, 0) {\includegraphics{\videoThumb}};
+            \node[circle] at (1,5) {};
+        \end{tikzpicture}
+    }{\phantom{a}}
 }}
 
 % the optional argument is the aspect ratio
@@ -406,7 +455,11 @@
     \setbeamertemplate{background canvas}{
         \ifstrempty{#1}{ 
             % #1 is empty
+            \noindent\colorbox{black}{%
+                \parbox[c][\paperheight][c]{\paperwidth}{%
             \href{run:#2}{\resizebox{\paperwidth}{\paperheight}{\includepreview{#2}}}
+            }
+        }
         }{
             \noindent\colorbox{black}{%
                 \parbox[c][\paperheight][c]{\paperwidth}{%

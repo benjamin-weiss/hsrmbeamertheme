@@ -26,11 +26,36 @@ Special commands in this theme
 ![Full page picture, with optional caption](doc/ex2.jpg)
 
 ```latex
-\imageframe[caption]{mypic.jpg}
+\imageframe[colour]{caption}{mypic.jpg}
 ```
 
-- `caption`: optional caption (can be any Latex code) that will be displayed as
-  an overlay on top of the picture
+Note that the picture's aspect ratio is respected.
+
+- `colour`: optional colour of the background (default to `white`)
+- `caption`: optional caption (can be any Latex code, leave it empty if you do
+  not need any caption) that will be displayed as an overlay on top of the picture
+
+
+Alternatively, you can use this syntax to set a background image for any slide:
+
+```latex
+{\fullbackground{mypic.jpg}
+
+\begin{frame}
+%...
+\end{frame}
+}
+```
+
+or the shortcut:
+
+```latex
+\bgframe[mypic.jpg]{
+
+%...
+
+}
+```
 
 ### Videos
 
