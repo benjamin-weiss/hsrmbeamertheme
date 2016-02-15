@@ -315,6 +315,40 @@
 \setbeamertemplate{block example end}
 {\end{beamercolorbox}\vskip\smallskipamount}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%  Syntax coloring with minted %%%%%%%%%%%%%%%%%%%%
+\RequirePackage[cache]{minted}
+\renewcommand{\theFancyVerbLine}{
+  \sffamily\textcolor[rgb]{0.5,0.5,0.5}{\scriptsize\arabic{FancyVerbLine}}}
+
+\newminted{cpp}{frame=lines,
+                 linenos=false,
+                 fontsize=\small,
+                 xleftmargin=1.8em}
+
+\newmintinline[cpp]{cpp}{fontsize=\small}
+
+\newminted{python}{frame=lines,
+                 linenos=false,
+                 fontsize=\small,
+                 xleftmargin=1.8em}
+
+\newmintinline[python]{python}{fontsize=\small}
+
+\newminted{sh}{frame=lines,
+                 linenos=false,
+                 fontsize=\small,
+                 xleftmargin=1.8em}
+
+\newmintinline[sh]{sh}{fontsize=\small}
+
+\newminted{xml}{frame=lines,
+                 linenos=false,
+                 fontsize=\small,
+                 xleftmargin=1.8em}
+
+\newmintinline[xml]{xml}{fontsize=\small}
+
+
 %---------------------------------------------------------------------
 % Images
 %---------------------------------------------------------------------

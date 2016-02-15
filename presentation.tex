@@ -253,18 +253,20 @@ EPFL}}
 \end{multicols}
 \end{frame}
 
-\begin{frame}[containsverbatim]{Code}
+\begin{frame}[fragile]{Code}
 
-A slide with some code
+    A slide with some code. C++, Python, \texttt{sh} and XML are pre-configured.
 
-\begin{lstlisting}
-\section{Meine Sektion}
-\subsection{Meine Subsektion}
-\begin{frame}
-\frametitle{Folientitel}
-% Folieninhalt
-\end{frame}
-\end{lstlisting}
+\begin{pythoncode}
+
+def print_hello():
+    print("Hello World!")
+
+
+if __name__ == "__main__":
+    print_hello()
+\end{pythoncode}
+
 \end{frame}
 
 

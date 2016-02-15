@@ -99,6 +99,27 @@ Adding:
 creates a frame with a CreateCommons BY-SA license explanation and a link to
 download the source.
 
+### Source code
+
+The nice [minted](https://www.ctan.org/tex-archive/macros/latex/contrib/minted)
+package is provided (and pre-configured for C++, Python, `sh` and XML) so that
+rendering beautiful syntax-highlighted code is a breeze:
+
+```latex
+\begin{pythoncode}
+
+def print_hello():
+    print("Hello World!")
+
+
+if __name__ == "__main__":
+    print_hello()
+\end{pythoncode}
+
+```
+
+Note that this requires `pygmentize` to be installed on your machine (`sudo
+apt-get install python-pygments`)
 
 Reference and License
 ---------------------
