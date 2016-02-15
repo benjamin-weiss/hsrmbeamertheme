@@ -88,11 +88,22 @@ You can insert references to specific paper in the footer of a slide that way:
 }
 ```
 
+### CreativeCommons License
+
+Adding:
+
+```latex
+\licenseframe{<source url>}
+```
+
+creates a frame with a CreateCommons BY-SA license explanation and a link to
+download the source.
+
 
 Reference and License
 ---------------------
 
 Based on HSRM Beamer theme by [Benjamin.Weiss@kreatiefton.de](mailto:Benjamin.Weiss@kreatiefton.de)
 
-Made available under the [GNU Public License](http://www.gnu.org/licenses/gpl-3.0.en.html).
+Made available under the [Creative Commons BY-SA](http://creativecommons.org/licenses/by-sa/4.0/) license.
 
