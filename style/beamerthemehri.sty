@@ -16,6 +16,9 @@
 \newif\if@doNoFlama
 \@doNoFlamafalse
 \DeclareOption{noflama}{\@doNoFlamatrue}
+\newif\if@doBasicFont
+\@doBasicFontfalse
+\DeclareOption{basicfont}{\@doBasicFonttrue}
 \newif\if@doSectionPage
 \@doSectionPagefalse
 \DeclareOption{nosectionpages}{\@doSectionPagetrue}
@@ -118,36 +121,43 @@
 % General
 
 % Declare fontfamilys
-\if@doNoFlama%
-    % Sans serif math option
-    \if@doSans%
-        % sans serif math %
-        \usepackage[no-math]{fontspec}%    
-        \setmainfont{Arial}%
-    \else%
-        % serif math %
-        \usepackage{fontspec}%    
-        \usefonttheme[onlymath]{serif}%
-    \fi%
-    \newfontfamily\Light{Arial}%
-    \newfontfamily\Book{Arial-Bold}%
-    \newfontfamily\Medium{Arial-Bold}%
-    \setsansfont{Arial}%
+\if@doBasicFont%
+	% basic font option
+	\newcommand{\Light}{}%
+	\newcommand{\Book}{\bf}%
+	\newcommand{\Medium}{\bf}%
 \else%
-    % Sans serif math option
-    \if@doSans%
-        \usepackage[no-math]{fontspec}%    
-        \setmainfont{FlamaLight}%
-    \else%
-        \usepackage{fontspec}%    
-        \usefonttheme[onlymath]{serif}%
-    \fi%
-        \usepackage{fontspec}
-    \defaultfontfeatures{Ligatures=TeX} % To support LaTeX quoting style
-    \newfontfamily\Light{FlamaLight}%
-    \newfontfamily\Book{FlamaBook}%
-    \newfontfamily\Medium{FlamaMedium}%
-    \setsansfont{FlamaLight}%
+	\if@doNoFlama%
+		% Sans serif math option
+		\if@doSans%
+			% sans serif math %
+			\usepackage[no-math]{fontspec}%    
+			\setmainfont{Arial}%
+		\else%
+			% serif math %
+			\usepackage{fontspec}%    
+			\usefonttheme[onlymath]{serif}%
+		\fi%
+		\newfontfamily\Light{Arial}%
+		\newfontfamily\Book{Arial-Bold}%
+		\newfontfamily\Medium{Arial-Bold}%
+		\setsansfont{Arial}%
+	\else%
+		% Sans serif math option
+		\if@doSans%
+			\usepackage[no-math]{fontspec}%    
+			\setmainfont{FlamaLight}%
+		\else%
+			\usepackage{fontspec}%    
+			\usefonttheme[onlymath]{serif}%
+		\fi%
+			\usepackage{fontspec}
+		\defaultfontfeatures{Ligatures=TeX} % To support LaTeX quoting style
+		\newfontfamily\Light{FlamaLight}%
+		\newfontfamily\Book{FlamaBook}%
+		\newfontfamily\Medium{FlamaMedium}%
+		\setsansfont{FlamaLight}%
+	\fi%
 \fi%
 
 \renewcommand\UrlFont{\Medium}
