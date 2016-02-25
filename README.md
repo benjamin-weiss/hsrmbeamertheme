@@ -35,6 +35,8 @@ Note that the picture's aspect ratio is respected.
 - `caption`: optional caption (can be any Latex code, leave it empty if you do
   not need any caption) that will be displayed as an overlay on top of the picture
 
+**Due to the inner working o TikZ, you may have to compile your presentation
+twice to get the background image to appear!**
 
 Alternatively, you can use this syntax to set a background image for any slide:
 
