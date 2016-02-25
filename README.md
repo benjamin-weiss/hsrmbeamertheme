@@ -26,14 +26,15 @@ Special commands in this theme
 ![Full page picture, with optional caption](doc/ex2.jpg)
 
 ```latex
-\imageframe[colour]{caption}{mypic.jpg}
+\imageframe[color=...,caption=...,scale=...]{mypic.jpg}
 ```
 
 Note that the picture's aspect ratio is respected.
 
-- `colour`: optional colour of the background (default to `white`)
-- `caption`: optional caption (can be any Latex code, leave it empty if you do
-  not need any caption) that will be displayed as an overlay on top of the picture
+- `color`: colour of the background. Defaults to `white`.
+- `caption`: caption that will be displayed as an overlay on top of the picture
+- `scale`: a scaling factor (useful to add a small margin around the picture for
+  instance). Defaults to 1.0.
 
 **Due to the inner working o TikZ, you may have to compile your presentation
 twice to get the background image to appear!**
@@ -41,13 +42,15 @@ twice to get the background image to appear!**
 Alternatively, you can use this syntax to set a background image for any slide:
 
 ```latex
-{\fullbackground{mypic.jpg}
+{\fullbackground[options]{mypic.jpg}
 
 \begin{frame}
 %...
 \end{frame}
 }
 ```
+
+(the same options as for `imageframe` are available)
 
 or the shortcut:
 

@@ -10,6 +10,8 @@
 \usepackage{etoolbox}
 \usepackage{eso-pic}
 
+\usepackage{pgfkeys}
+
 \newif\if@doSans
 \@doSansfalse
 \DeclareOption{noserifmath}{\@doSanstrue}
@@ -373,39 +375,46 @@
     \usebeamerfont{copyright text}{\usebeamercolor[fg]{copyright text}{\vbox{\hsize=\mytempdimen#3}}}\vskip3pt%
 }}
 
-\newcommand\fullbackground[1]{%
-\setbeamertemplate{background}{
-    \includegraphics[width=\paperwidth, height=\paperheight,keepaspectratio]{#1}
-}
+\pgfkeys{
+    /background/.is family, /background,
+    default/.style = {scale = 1.0,color=white,caption=\empty},
+    scale/.estore in = \bgScale,
+    color/.estore in = \bgColor,
+    caption/.estore in = \bgCaption,
 }
 
-\newcommand\imageframe[3][]{%
+\newcommand\fullbackground[2][]{%
+    \pgfkeys{/background, default, #1}%
+    \setbeamertemplate{background}{
+        %\includegraphics[width=\paperwidth, height=\paperheight,keepaspectratio]{#1}
+        \begin{tikzpicture}[remember picture,overlay]
+            \node at (current page.center){\includegraphics[width=\bgScale\paperwidth,height=\bgScale\paperheight,keepaspectratio]{#2}};
+        \end{tikzpicture}
+    }
+}
+
+\newcommand\imageframe[2][]{%
+    \pgfkeys{/background, default, #1}%
     {
     \setbeamertemplate{background canvas}{
-        \ifstrempty{#1}{ 
-            \colorlet{bgcolor}{white}%
-        }{
-            \colorlet{bgcolor}{#1}%
-        }
         \begin{tikzpicture}[remember picture, overlay,background
-            rectangle/.style={fill=bgcolor}, show background rectangle]
+            rectangle/.style={fill=\bgColor}, show background rectangle]
             \useasboundingbox (current page.north east) rectangle (current page.south west);
 
-            \node at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#3}};
+            \node at (current page.center){\includegraphics[width=\bgScale\paperwidth,height=\bgScale\paperheight,keepaspectratio]{#2}};
         \end{tikzpicture}
 
     }
     \setbeamertemplate{background}{}
 
     \begin{frame}[plain]
-        \ifstrempty{#2}{ 
-            % #1 is empty
-        }{
+        \ifdefequal{\bgCaption}{\empty}{%
+        }{%
             \begin{tikzpicture}[remember picture,overlay]
                 \node at (-1, -4.5) [anchor=south west,shape=rectangle,fill=hriSec3Dark, opacity=0.7, align=right, text width=0.6\paperwidth]
-                {\usebeamerfont{subtitle}\usebeamercolor[bg]{subtitle}#2\par};
+                {\usebeamerfont{subtitle}\usebeamercolor[bg]{subtitle}\bgCaption\par};
             \end{tikzpicture}
-        }
+        }%
     \end{frame}
     }
 }
