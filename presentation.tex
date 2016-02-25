@@ -1,4 +1,3 @@
-%!TEX program = xelatex
 
 \documentclass[compress]{beamer}
 %--------------------------------------------------------------------------
@@ -13,36 +12,13 @@
 \usepackage{tabularx,ragged2e}
 \usepackage{booktabs}
 
-\usepackage{listings}
-\lstset{ %
-language=[LaTeX]TeX,
-basicstyle=\normalsize\ttfamily,
-keywordstyle=,
-numbers=left,
-numberstyle=\tiny\ttfamily,
-stepnumber=1,
-showspaces=false,
-showstringspaces=false,
-showtabs=false,
-breaklines=true,
-frame=tb,
-framerule=0.5pt,
-tabsize=4,
-framexleftmargin=0.5em,
-framexrightmargin=0.5em,
-xleftmargin=0.5em,
-xrightmargin=0.5em
-}
-
-
 %--------------------------------------------------------------------------
 % Load theme
 %--------------------------------------------------------------------------
 \usetheme{hri}
 
-\usepackage{dtklogos} % must be loaded after theme
 \usepackage{tikz}
-\usetikzlibrary{mindmap,backgrounds,positioning}
+\usetikzlibrary{calc,mindmap,backgrounds,positioning}
 
 \graphicspath{{figs/}}
 
@@ -70,16 +46,11 @@ EPFL}}
 
 \licenseframe{https://github.com/severin-lemaignan/hri-beamer-theme}
 
-%\begin{frame}[plain]
-%	\titlepage
-%\end{frame}
-
 %--------------------------------------------------------------------------
 % Table of contents
 %--------------------------------------------------------------------------
 \section*{Overview}
 \begin{frame}{Overview}
-	% hideallsubsections ist empfehlenswert für längere Präsentationen
 	\tableofcontents[hideallsubsections]
 \end{frame}
 
@@ -94,6 +65,8 @@ EPFL}}
 		\toprule
 		\textbf{Option}			& \textbf{Effect} \tabularnewline
 		\midrule
+        \texttt{basicfont}		& Use default Latex fonts (required to compile
+        with pdflatex) \tabularnewline
 		\texttt{noflama}		& Use Arial instead of Flama \tabularnewline
 		\texttt{noserifmath}		& Math formula typeset in sans-serif \tabularnewline
 		\texttt{nosectionpages} & No inter-section pages \tabularnewline
