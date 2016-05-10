@@ -151,6 +151,15 @@ if __name__ == "__main__":
 Note that this requires `pygmentize` to be installed on your machine (`sudo
 apt-get install python-pygments`)
 
+### Badges
+
+We can use the `\badge` command inside a frame to display a small (2cmx2cm)
+picture in the top right corner of the slide:
+
+```latex
+\badge{<image>}
+```
+
 Reference and License
 ---------------------
 

@@ -383,6 +383,12 @@
     caption/.estore in = \bgCaption,
 }
 
+\newcommand\badge[1]{%
+    \begin{tikzpicture}[remember picture,overlay]%
+        \node [xshift=-1cm,yshift=-1.4cm] at (current page.north east){\includegraphics[width=2cm,height=2cm,keepaspectratio]{#1}};%
+    \end{tikzpicture}%
+}
+
 \newcommand\fullbackground[2][]{%
     \pgfkeys{/background, default, #1}%
     \setbeamertemplate{background}{
