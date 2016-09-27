@@ -9,6 +9,7 @@
 \usepackage{color}
 \usepackage{etoolbox}
 \usepackage{eso-pic}
+\usepackage{tikz}
 
 \usepackage{pgfkeys}
 
@@ -552,7 +553,31 @@
     \end{frame}
 }
 
+%%%%%%%%%%%%%%%%% Bubbles to add explanations
 
+\usetikzlibrary{shapes.callouts}
+
+
+\usepackage{xparse}
+
+\tikzset{
+    invisible/.style={opacity=0,text opacity=0},
+    visible on/.style={alt=#1{}{invisible}},
+    alt/.code args={<#1>#2#3}{%
+      \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+    },
+}
+
+\NewDocumentCommand{\bubble}{r<> O{230} O{0.5cm} m m}{%
+\tikz[remember picture, overlay]\node[align=center, fill=hriSec3Comp!60,font=\small, text width=2cm,
+opacity=0.8,text opacity=1,visible on=<#1>, rounded corners,
+draw,rectangle callout,anchor=pointer,callout relative pointer={(#2:#3)}]
+at (#4) {#5};
+}
+
+\newcommand{\bubblemark}[1]{\tikz[overlay,remember picture,baseline=-0.5ex] \node (#1) {};}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \mode
 <all>
