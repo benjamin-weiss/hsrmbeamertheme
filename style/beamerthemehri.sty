@@ -42,6 +42,15 @@
 \newcommand{\quoted}[1]{›#1‹}
 \newcommand{\doublequoted}[1]{»#1«}
 
+\RequirePackage{xspace}
+\newcommand{\eg}{\textit{e.g.}\xspace}
+\newcommand{\etal}{\textit{et al.}\xspace}
+\newcommand{\ie}{\textit{i.e.}\xspace}
+\newcommand{\etc}{\textit{etc.}\xspace}
+\newcommand{\vs}{\textit{vs.}\xspace}
+
+\RequirePackage{xstring}
+
 %---------------------------------------------------------------------
 % Itemize
 %---------------------------------------------------------------------
@@ -534,7 +543,7 @@
         
         \normalsize\vspace{1em}
         You can download the sources of this presentation here:\\
-        {\Medium\url{#1}}
+        {\Medium\footnotesize\IfBeginWith{#1}{http}{\url{#1}}{\href{https://#1}{#1}}}
     \end{frame}
 }
 
