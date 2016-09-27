@@ -171,23 +171,28 @@
 	\fi%
 \fi%
 
-\renewcommand\UrlFont{\Medium}
+\usepackage{fontspec}
+\setmainfont{Flama}[Extension=.otf,UprightFont=*Light,BoldFont=*Medium,ItalicFont=*Italic]
+
+%\setsansfont{FlamaLight.otf}%
+
+\renewcommand\UrlFont{\bf}
 % Titlepage
-\setbeamerfont{title}{family=\Light,size=\fontsize{20}{20}}
-\setbeamerfont{subtitle}{family=\Light,size=\fontsize{12}{14}}
+\setbeamerfont{title}{size=\fontsize{20}{20}}
+\setbeamerfont{subtitle}{size=\fontsize{12}{14}}
 \setbeamerfont{date}{size=\fontsize{8}{10}}
 \setbeamerfont{author}{size=\fontsize{12}{15}}
 \setbeamerfont{institute}{size=\fontsize{8}{10}}
 % Section
 \setbeamerfont{section title}{size=\LARGE}
 % Content
-\setbeamerfont{frametitle}{family=\Light,size=\large}
-\setbeamerfont{copyright text}{family=\Light,size=\tiny}
-\setbeamerfont{block title}{family=\Book,size=\large}
-\setbeamerfont{block title alerted}{family=\Book,size=\large}
-\setbeamerfont{alerted text}{family=\Medium}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{copyright text}{size=\tiny}
+\setbeamerfont{block title}{family=\bf,size=\large}
+\setbeamerfont{block title alerted}{family=\bf,size=\large}
+\setbeamerfont{alerted text}{family=\bf}
 % Captions
-\setbeamerfont{caption name}{family=\Book}
+\setbeamerfont{caption name}{family=\bf}
 
 %---------------------------------------------------------------------
 % Titlepage
@@ -534,7 +539,7 @@
         \includegraphics[width=0.3\paperwidth]{by-sa}
 
         This presentation is released under the terms of the\\ 
-        {\Medium \href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons Attribution-Share Alike}} license.
+        {\bf \href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons Attribution-Share Alike}} license.
 
         \vspace{1em}
         \small You are free to reuse it and modify it as much as you want as long as\\
@@ -543,7 +548,7 @@
         
         \normalsize\vspace{1em}
         You can download the sources of this presentation here:\\
-        {\Medium\footnotesize\IfBeginWith{#1}{http}{\url{#1}}{\href{https://#1}{#1}}}
+        {\bf\footnotesize\IfBeginWith{#1}{http}{\url{#1}}{\href{https://#1}{#1}}}
     \end{frame}
 }
 
