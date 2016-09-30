@@ -18,7 +18,7 @@ with open(sys.argv[1],'r') as tex:
                 starttime = int(starttime)
             else:
                 starttime = 0
-            cmd = "avconv -i " + found.group('file') + " -r 1 -vframes 1 -ss " + str(starttime) + " " + found.group('file').split('.')[0] + "_thumb.jpg"
+            cmd = "ffmpeg -y -i " + found.group('file') + " -r 1 -vframes 1 -ss " + str(starttime) + " " + found.group('file').split('.')[0] + "_thumb.jpg"
             print("%s starting at %d" % (found.group('file'), starttime))
             print("> " + cmd)
             call(cmd, shell=True)
