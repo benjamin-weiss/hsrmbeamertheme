@@ -10,6 +10,7 @@
 \usepackage{etoolbox}
 \usepackage{eso-pic}
 \usepackage{tikz}
+\usepackage{amsmath}
 
 \usepackage{pgfkeys}
 
@@ -44,10 +45,10 @@
 \newcommand{\doublequoted}[1]{»#1«}
 
 \RequirePackage{xspace}
-\newcommand{\eg}{\textit{e.g.}\xspace}
+\newcommand{\eg}{e.g.\xspace}
 \newcommand{\etal}{\textit{et al.}\xspace}
-\newcommand{\ie}{\textit{i.e.}\xspace}
-\newcommand{\etc}{\textit{etc.}\xspace}
+\newcommand{\ie}{i.e.\xspace}
+\newcommand{\etc}{etc.\xspace}
 \newcommand{\vs}{\textit{vs.}\xspace}
 
 \RequirePackage{xstring}
@@ -57,7 +58,7 @@
 %---------------------------------------------------------------------
 \setbeamertemplate{itemize item}{$\circ$}
 \setbeamertemplate{itemize subitem}{\rightTextArrow}
-\setbeamertemplate{itemize subsubitem}{\rightTextArrow}
+\setbeamertemplate{itemize subsubitem}{--}
 
 \setlength{\parskip}{0.5em}
 
@@ -130,50 +131,17 @@
 % Fonts
 %---------------------------------------------------------------------
 
+% HACK: by doing so, Beamer replacements are disabled, and fontspec can effectively use Flama everywhere.
+% Without it, digits are typeset using a serif font.
+\usepackage{lmodern}
+
 % General
 
-% Declare fontfamilys
-\if@doBasicFont%
-	% basic font option
-	\newcommand{\Light}{}%
-	\newcommand{\Book}{\bf}%
-	\newcommand{\Medium}{\bf}%
-\else%
-	\if@doNoFlama%
-		% Sans serif math option
-		\if@doSans%
-			% sans serif math %
-			\usepackage[no-math]{fontspec}%    
-			\setmainfont{Arial}%
-		\else%
-			% serif math %
-			\usepackage{fontspec}%    
-			\usefonttheme[onlymath]{serif}%
-		\fi%
-		\newfontfamily\Light{Arial}%
-		\newfontfamily\Book{Arial-Bold}%
-		\newfontfamily\Medium{Arial-Bold}%
-		\setsansfont{Arial}%
-	\else%
-		% Sans serif math option
-		\if@doSans%
-			\usepackage[no-math]{fontspec}%    
-			\setmainfont{FlamaLight}%
-		\else%
-			\usepackage{fontspec}%    
-			\usefonttheme[onlymath]{serif}%
-		\fi%
-			\usepackage{fontspec}
-		\defaultfontfeatures{Ligatures=TeX} % To support LaTeX quoting style
-		\newfontfamily\Light{FlamaLight}%
-		\newfontfamily\Book{FlamaBook}%
-		\newfontfamily\Medium{FlamaMedium}%
-		\setsansfont{FlamaLight}%
-	\fi%
-\fi%
 
 \usepackage{fontspec}
 \setmainfont{Flama}[Extension=.otf,UprightFont=*Light,BoldFont=*Medium,ItalicFont=*Italic]
+\setsansfont{Flama}[Extension=.otf,UprightFont=*Light,BoldFont=*Medium,ItalicFont=*Italic]
+%\setsansfont{FlamaLight}[Extension=.otf]
 
 %\setsansfont{FlamaLight.otf}%
 
@@ -281,7 +249,7 @@
 %---------------------------------------------------------------------
 % Footline
 %---------------------------------------------------------------------
-\usenavigationsymbolstemplate{}
+\usenavigationsymbolstemplate{} % hides small icons in bottom right corner use to navigate the presentation
 \setbeamertemplate{footline}
 {%
 \begin{beamercolorbox}[wd=\textwidth,ht=3ex,dp=1.5ex,leftskip=0.3cm,rightskip=0.3cm]{structure}%
@@ -408,7 +376,8 @@
     \pgfkeys{/background, default, #1}%
     \setbeamertemplate{background}{
         %\includegraphics[width=\paperwidth, height=\paperheight,keepaspectratio]{#1}
-        \begin{tikzpicture}[remember picture,overlay]
+        \begin{tikzpicture}[remember picture,overlay,background
+            rectangle/.style={fill=\bgColor}, show background rectangle]
             \node at (current page.center){\includegraphics[width=\bgScale\paperwidth,height=\bgScale\paperheight,keepaspectratio]{#2}};
         \end{tikzpicture}
     }
@@ -568,16 +537,49 @@
     },
 }
 
-\NewDocumentCommand{\bubble}{r<> O{230} O{0.5cm} m m}{%
-\tikz[remember picture, overlay]\node[align=center, fill=hriSec3Comp!60,font=\small, text width=2cm,
-opacity=0.8,text opacity=1,visible on=<#1>, rounded corners,
-draw,rectangle callout,anchor=pointer,callout relative pointer={(#2:#3)}]
-at (#4) {#5};
+\NewDocumentCommand{\bubble}{r<> O{230} O{0.5cm} O{2cm} m m}{%
+\tikz[remember picture, overlay]\node[align=center, fill=hriSec3Comp!60,font=\footnotesize, text width=#4,
+opacity=0.8,text opacity=1,visible on=<#1>,rectangle callout,anchor=pointer,callout relative pointer={(#2:#3)}]
+at (#5) {#6};
 }
 
-\newcommand{\bubblemark}[1]{\tikz[overlay,remember picture,baseline=-0.5ex] \node (#1) {};}
+\NewDocumentCommand{\bubblemark}{O{-0.5ex} m}{%
+\tikz[overlay,remember picture,baseline=#1] \node (#2) {};
+}
+%%%%%%%%% Highlight (math) text by putting it in a red colorbox
+
+\NewDocumentCommand{\highlight}{r<> m}{%
+\alt<#1>{\colorbox{red!50}{$#2$}}{#2}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Special coordinate system to refer to absolute page coordinates
+%
+% Taken from: http://tex.stackexchange.com/questions/89588/positioning-relative-to-page-in-tikz
+\makeatletter
+\def\parsecomma#1,#2\endparsecomma{\def\page@x{#1}\def\page@y{#2}}
+\tikzdeclarecoordinatesystem{page}{
+    \parsecomma#1\endparsecomma
+    \pgfpointanchor{current page}{north east}
+    % Save the upper right corner
+    \pgf@xc=\pgf@x%
+    \pgf@yc=\pgf@y%
+    % save the lower left corner
+    \pgfpointanchor{current page}{south west}
+    \pgf@xb=\pgf@x%
+    \pgf@yb=\pgf@y%
+    % Transform to the correct placement
+    \pgfmathparse{(\pgf@xc-\pgf@xb)/2.*\page@x+(\pgf@xc+\pgf@xb)/2.}
+    \expandafter\pgf@x\expandafter=\pgfmathresult pt
+    \pgfmathparse{(\pgf@yc-\pgf@yb)/2.*\page@y+(\pgf@yc+\pgf@yb)/2.}
+    \expandafter\pgf@y\expandafter=\pgfmathresult pt
+}
+\makeatother
+
+
 
 \mode
 <all>
