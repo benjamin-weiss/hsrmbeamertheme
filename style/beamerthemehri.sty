@@ -1,0 +1,596 @@
+% Name           : beamerthemehri.sty
+% Author         : Séverin Lemaignan (severin.lemaignan@epfl.ch)
+% Author         : Benjamin Weiss (benjamin.weiss@kreatiefton.de)
+% License        : This file may be distributed and/or modified under the
+%                  GNU Public License.
+
+\ProvidesPackage{beamerthemehri}[2013/05/05]
+
+\usepackage{color}
+\usepackage{etoolbox}
+\usepackage{eso-pic}
+\usepackage{tikz}
+\usepackage{amsmath}
+
+\usepackage{pgfkeys}
+
+\newif\if@doSans
+\@doSansfalse
+\DeclareOption{noserifmath}{\@doSanstrue}
+\newif\if@doNoFlama
+\@doNoFlamafalse
+\DeclareOption{noflama}{\@doNoFlamatrue}
+\newif\if@doBasicFont
+\@doBasicFontfalse
+\DeclareOption{basicfont}{\@doBasicFonttrue}
+\newif\if@doSectionPage
+\@doSectionPagefalse
+\DeclareOption{nosectionpages}{\@doSectionPagetrue}
+\newif\if@dominted
+\@domintedfalse
+\DeclareOption{minted}{\@domintedtrue}
+\ProcessOptions
+
+\mode<presentation>
+
+%---------------------------------------------------------------------
+% TOC
+%---------------------------------------------------------------------
+\useoutertheme[subsection=false,shadow]{miniframes}
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}[subsections numbered]
+
+%---------------------------------------------------------------------
+% custom commands
+%---------------------------------------------------------------------
+\newcommand{\rightTextArrow}{→}
+\newcommand{\quoted}[1]{›#1‹}
+\newcommand{\doublequoted}[1]{»#1«}
+
+\RequirePackage{xspace}
+\newcommand{\eg}{e.g.\xspace}
+\newcommand{\etal}{\textit{et al.}\xspace}
+\newcommand{\ie}{i.e.\xspace}
+\newcommand{\etc}{etc.\xspace}
+\newcommand{\vs}{\textit{vs.}\xspace}
+
+\RequirePackage{xstring}
+
+%---------------------------------------------------------------------
+% Itemize
+%---------------------------------------------------------------------
+\setbeamertemplate{itemize item}{$\circ$}
+\setbeamertemplate{itemize subitem}{\rightTextArrow}
+\setbeamertemplate{itemize subsubitem}{--}
+
+\setlength{\parskip}{0.5em}
+
+%---------------------------------------------------------------------
+% Background
+%---------------------------------------------------------------------
+
+\setbeamertemplate{background}{
+    \includegraphics[width=\paperwidth,
+    height=\paperheight]{slide-background.pdf}
+}
+
+%---------------------------------------------------------------------
+% Colors
+%---------------------------------------------------------------------
+
+% Primary Colors
+\definecolor{hriRed}{rgb}{0.882352941,0,0.098039216}
+\definecolor{hriRedDark}{rgb}{0.588235294,0,0.058823529}
+\definecolor{hriWarmGreyDark}{rgb}{0.274509804,0.254901961,0.235294118}
+\definecolor{hriWarmGreyLight}{rgb}{0.666666667,0.647058824,0.62745098}
+
+% Secondary Colors
+\definecolor{hriSec1}{rgb}{0,0.588235294,0.509803922}
+\definecolor{hriSec1Dark}{rgb}{0,0.392156863,0.31372549}
+\definecolor{hriSec1Comp}{rgb}{0.294117647,0.745098039,0.882352941}
+\definecolor{hriSec1CompDark}{rgb}{0.196078431,0.490196078,0.568627451}
+
+\definecolor{hriSec2}{rgb}{0.607843137,0.764705882,0.156862745}
+\definecolor{hriSec2Dark}{rgb}{0.411764706,0.490196078,0.098039216}
+\definecolor{hriSec2Comp}{rgb}{0.254901961,0.156862745,0.509803922}
+\definecolor{hriSec2CompDark}{rgb}{0.176470588,0.098039216,0.333333333}
+
+\definecolor{hriSec3}{rgb}{0.509803922,0.078431373,0.31372549}
+\definecolor{hriSec3Dark}{rgb}{0.338345865,0.058823529,0.196078431}
+\definecolor{hriSec3Comp}{rgb}{1,0.509803922,0}
+\definecolor{hriSec3CompDark}{rgb}{0.666666667,0.333333333,0}
+
+% General
+\setbeamercolor{normal text}{fg=hriWarmGreyDark}
+\setbeamercolor{structure}{fg=hriWarmGreyDark}
+\setbeamercolor{alerted text}{fg=hriRed}
+\setbeamercolor{example text}{fg=white}
+\setbeamercolor{copyright text}{fg=hriWarmGreyLight}
+\setbeamercolor{palette primary}{fg=hriWarmGreyDark}
+\setbeamercolor{palette secondary}{fg=hriWarmGreyDark,bg=hriWarmGreyLight}
+\setbeamercolor{palette tertiary}{fg=black,bg=hriWarmGreyLight}
+\setbeamercolor{palette quaternary}{fg=white, bg=hriWarmGreyDark}
+% Titlepage
+\setbeamercolor{title}{parent=normal text}
+\setbeamercolor{subtitle}{parent=normal text}
+\setbeamercolor{institute}{parent=normal text}
+% Content
+\setbeamercolor{frametitle}{parent=palette quaternary}
+% Blocks
+\setbeamercolor{block title}{parent=palette quaternary}
+\setbeamercolor{block body}{parent=palette secondary}
+\setbeamercolor{block title example}{fg=white, bg=hriSec1Dark}
+\setbeamercolor{block body example}{fg=white, bg=hriSec1}
+\setbeamercolor{block title alerted}{fg=white, bg=hriRedDark}
+\setbeamercolor{block body alerted}{fg=white, bg=hriRed}
+% Notes
+\setbeamercolor{note page}{fg=hriWarmGreyDark,bg=hriWarmGreyLight}
+\setbeamercolor{note title}{fg=white, bg=hriWarmGreyDark}
+\setbeamercolor{note date}{parent=note title}
+% Page Number
+\setbeamercolor{page number in head/foot}{fg=hriWarmGreyDark}
+
+%---------------------------------------------------------------------
+% Fonts
+%---------------------------------------------------------------------
+
+% HACK: by doing so, Beamer replacements are disabled, and fontspec can effectively use Flama everywhere.
+% Without it, digits are typeset using a serif font.
+\if@doBasicFont
+\else
+\usepackage{lmodern}
+
+% General
+
+
+\usepackage{fontspec}
+\setmainfont{Flama}[Extension=.otf,UprightFont=*Light,BoldFont=*Medium,ItalicFont=*Italic]
+\setsansfont{Flama}[Extension=.otf,UprightFont=*Light,BoldFont=*Medium,ItalicFont=*Italic]
+%\setsansfont{FlamaLight}[Extension=.otf]
+
+%\setsansfont{FlamaLight.otf}%
+
+
+\fi
+
+
+\renewcommand\UrlFont{\bf}
+% Titlepage
+\setbeamerfont{title}{size=\fontsize{20}{20}}
+\setbeamerfont{subtitle}{size=\fontsize{12}{14}}
+\setbeamerfont{date}{size=\fontsize{8}{10}}
+\setbeamerfont{author}{size=\fontsize{12}{15}}
+\setbeamerfont{institute}{size=\fontsize{8}{10}}
+% Section
+\setbeamerfont{section title}{size=\LARGE}
+% Content
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{copyright text}{size=\tiny}
+\setbeamerfont{block title}{family=\bf,size=\large}
+\setbeamerfont{block title alerted}{family=\bf,size=\large}
+\setbeamerfont{alerted text}{family=\bf}
+% Captions
+\setbeamerfont{caption name}{family=\bf}
+
+%---------------------------------------------------------------------
+% Titlepage
+%---------------------------------------------------------------------
+
+% Titlepage structure
+\def\maketitle{\ifbeamer@inframe\titlepage\else{\setbeamertemplate{background}{}\frame[plain]{\titlepage}}\fi}
+    
+\def\titlepage{
+\usebeamertemplate{title page}
+}
+\setbeamertemplate{title page}
+{
+    % Add background to title page
+    \AddToShipoutPictureFG*{\includegraphics[width=\paperwidth]{background.pdf}}
+    \begin{minipage}[b][\paperheight]{\textwidth}
+    \vspace*{5mm}
+    \includegraphics[height=14mm]{logo}\par
+    \vspace*{5mm}
+    \ifx\insertsubtitle\@empty%
+    \else%
+        {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par}%
+    \fi%
+    \ifx\insertsubtitle\@empty%
+    \else%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+        \vspace*{5mm}
+    \fi%
+    \ifx\insertdate\@empty%
+    \else%
+        {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate\par}%
+    \fi% 
+
+    \vfill
+
+    \ifx\insertauthor\@empty%
+    \else%
+        {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par}%
+    \fi%
+    \ifx\insertinstitut\@empty%
+    \else%
+        \vspace*{3mm}
+        {\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\par}%
+    \fi% 
+    \vspace*{5mm}
+    \end{minipage}
+}
+
+%---------------------------------------------------------------------
+% Sectionpages
+%---------------------------------------------------------------------
+
+% Make Sectionhead uppercase
+\newcommand{\insertsectionHEAD}{%
+    \expandafter\insertsectionHEADaux\insertsectionhead}
+    \newcommand{\insertsectionHEADaux}[3]{\MakeUppercase{#3}
+}
+
+\if@doSectionPage\@empty
+\else
+% Insert frame with section title at every section start
+\AtBeginSection[]
+{
+\begingroup
+\setbeamertemplate{background}{}
+\setbeamercolor{background canvas}{bg=hriWarmGreyDark}
+\begin{frame}[plain]
+\centering
+\vfill\usebeamerfont{section title}\textcolor{white}{\insertsectionHEAD}\vfill
+\end{frame}
+\endgroup
+}
+\fi
+
+%---------------------------------------------------------------------
+% Frametitle
+%---------------------------------------------------------------------
+\setbeamertemplate{frametitle}
+{
+\begin{beamercolorbox}[wd=\paperwidth,leftskip=0.3cm,rightskip=0.3cm,ht=3ex,dp=1.5ex]{frametitle}
+	 \usebeamerfont{frametitle}\MakeUppercase{\insertframetitle}%
+\end{beamercolorbox}
+}
+
+%---------------------------------------------------------------------
+% Footline
+%---------------------------------------------------------------------
+\usenavigationsymbolstemplate{} % hides small icons in bottom right corner use to navigate the presentation
+\setbeamertemplate{footline}
+{%
+\begin{beamercolorbox}[wd=\textwidth,ht=3ex,dp=1.5ex,leftskip=0.3cm,rightskip=0.3cm]{structure}%
+\usebeamerfont{page number in head/foot}%
+\hfill\insertframenumber%
+\end{beamercolorbox}%
+}
+
+%---------------------------------------------------------------------
+% Captions
+%---------------------------------------------------------------------
+\setbeamertemplate{caption label separator}{: }
+
+%---------------------------------------------------------------------
+% Blocks
+%---------------------------------------------------------------------
+\setbeamertemplate{block begin}
+{
+  \setbeamercolor{item}{parent=block body}
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[sep=.5ex,dp=0.6ex,leftskip=0.5ex,rightskip=0.5ex]{block title}
+    \usebeamerfont*{block title}\insertblocktitle%
+  \end{beamercolorbox}%
+  {\parskip0pt\par}%
+  {\nointerlineskip\vskip-0.5pt}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[sep=.5ex,dp=0.6ex,leftskip=0.5ex,rightskip=0.5ex,vmode]{block body}%
+}
+\setbeamertemplate{block end}  
+{\end{beamercolorbox}\vskip\smallskipamount}
+
+\setbeamertemplate{block alerted begin}
+{
+  \setbeamercolor{item}{parent=block body alerted}
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[sep=.5ex,dp=0.6ex,leftskip=0.5ex,rightskip=0.5ex]{block title alerted}
+    \usebeamerfont*{block title alerted}\insertblocktitle%
+  \end{beamercolorbox}%
+  {\parskip0pt\par}%
+  {\nointerlineskip\vskip-0.5pt}%
+  \usebeamerfont{block body alerted}%
+  \begin{beamercolorbox}[sep=.5ex,dp=0.6ex,leftskip=0.5ex,rightskip=0.5ex,vmode]{block body alerted}%
+}
+\setbeamertemplate{block alerted end}
+{\end{beamercolorbox}\vskip\smallskipamount}
+
+\setbeamertemplate{block example begin}
+{
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[sep=.5ex,dp=0.6ex,leftskip=0.5ex,rightskip=0.5ex]{block title example}
+    \usebeamerfont*{block title example}\insertblocktitle%
+  \end{beamercolorbox}%
+  {\parskip0pt\par}%
+  {\nointerlineskip\vskip-0.5pt}%
+  \usebeamerfont{block body example}%
+  \begin{beamercolorbox}[sep=.5ex,dp=0.6ex,leftskip=0.5ex,rightskip=0.5ex,vmode]{block body example}%
+}
+\setbeamertemplate{block example end}
+{\end{beamercolorbox}\vskip\smallskipamount}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%  Syntax coloring with minted %%%%%%%%%%%%%%%%%%%%
+\if@dominted
+\RequirePackage[cache]{minted}
+\renewcommand{\theFancyVerbLine}{
+  \sffamily\textcolor[rgb]{0.5,0.5,0.5}{\scriptsize\arabic{FancyVerbLine}}}
+
+\newminted{cpp}{frame=lines,
+                 linenos=false,
+                 fontsize=\small,
+                 xleftmargin=1.8em}
+
+\newmintinline[cpp]{cpp}{fontsize=\small}
+
+\newminted{python}{frame=lines,
+                 linenos=false,
+                 fontsize=\small,
+                 xleftmargin=1.8em}
+
+\newmintinline[python]{python}{fontsize=\small}
+
+\newminted{sh}{frame=lines,
+                 linenos=false,
+                 fontsize=\small,
+                 xleftmargin=1.8em}
+
+\newmintinline[sh]{sh}{fontsize=\small}
+
+\newminted{xml}{frame=lines,
+                 linenos=false,
+                 fontsize=\small,
+                 xleftmargin=1.8em}
+
+\newmintinline[xml]{xml}{fontsize=\small}
+\fi
+
+
+%---------------------------------------------------------------------
+% Images
+%---------------------------------------------------------------------
+
+
+\newbox\mytempbox
+\newdimen\mytempdimen
+
+\newcommand\includegraphicscopyright[3][]{%
+  \leavevmode\vbox{\vskip3pt\raggedright\setbox\mytempbox=\hbox{\includegraphics[#1]{#2}}%
+    \mytempdimen=\wd\mytempbox\box\mytempbox\par\vskip1pt%
+    \usebeamerfont{copyright text}{\usebeamercolor[fg]{copyright text}{\vbox{\hsize=\mytempdimen#3}}}\vskip3pt%
+}}
+
+\pgfkeys{
+    /background/.is family, /background,
+    default/.style = {scale = 1.0,color=white,caption=\empty},
+    scale/.estore in = \bgScale,
+    color/.estore in = \bgColor,
+    caption/.estore in = \bgCaption,
+}
+
+\newcommand\badge[1]{%
+    \begin{tikzpicture}[remember picture,overlay]%
+        \node [xshift=-1cm,yshift=-1.4cm] at (current page.north east){\includegraphics[width=2cm,height=2cm,keepaspectratio]{#1}};%
+    \end{tikzpicture}%
+}
+
+\newcommand\fullbackground[2][]{%
+    \pgfkeys{/background, default, #1}%
+    \setbeamertemplate{background}{
+        %\includegraphics[width=\paperwidth, height=\paperheight,keepaspectratio]{#1}
+        \begin{tikzpicture}[remember picture,overlay,background
+            rectangle/.style={fill=\bgColor}, show background rectangle]
+            \node at (current page.center){\includegraphics[width=\bgScale\paperwidth,height=\bgScale\paperheight,keepaspectratio]{#2}};
+        \end{tikzpicture}
+    }
+}
+
+\newcommand\imageframe[2][]{%
+    \pgfkeys{/background, default, #1}%
+    {
+    \setbeamertemplate{background canvas}{
+        \begin{tikzpicture}[remember picture, overlay,background
+            rectangle/.style={fill=\bgColor}, show background rectangle]
+            \useasboundingbox (current page.north east) rectangle (current page.south west);
+
+            \node at (current page.center){\includegraphics[width=\bgScale\paperwidth,height=\bgScale\paperheight,keepaspectratio]{#2}};
+        \end{tikzpicture}
+
+    }
+    \setbeamertemplate{background}{}
+
+    \begin{frame}[plain]
+        \ifdefequal{\bgCaption}{\empty}{%
+        }{%
+            \begin{tikzpicture}[remember picture,overlay]
+                \node at (-1, -4.5) [anchor=south west,shape=rectangle,fill=hriSec3Dark, opacity=0.7, align=right, text width=0.6\paperwidth]
+                {\usebeamerfont{subtitle}\usebeamercolor[bg]{subtitle}\bgCaption\par};
+            \end{tikzpicture}
+        }%
+    \end{frame}
+    }
+}
+
+\newcommand\grid{
+        \draw[help lines] (current page.south west) grid (14,10);
+        \foreach \x in {-5,...,5} {
+            \foreach \y in {-5,...,5} {
+                \node at (\x,\y) [anchor=south west,gray]{{\fontsize{1.2mm}{0.1em}\selectfont (\x,\y)}};
+            }
+        }
+}
+
+\newcommand\bgframe[2][]{%
+    {
+        \setbeamertemplate{background canvas}{
+            \noindent\colorbox{black}{%
+                \parbox[c][\paperheight][c]{\paperwidth}{%
+                    \ifstrempty{#1}{ 
+                        % #1 is empty
+                    }{
+                        \centering
+                        \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#1}
+                    }
+                }
+            }
+        }
+        \setbeamertemplate{background}{}
+
+        \begin{frame}[plain]
+            #2
+    \end{frame}
+    }
+}
+
+
+% for a video like: figs/video1.mpg, an image called figs/video1_thumb.jpg
+% exists, it is used to preview the video. Otherwise a blank object is returned.
+\newcommand{\includepreview}[1]{{
+    \makeatletter
+    \filename@parse{#1}
+    \edef\videoThumb{\filename@area\filename@base_thumb.jpg}%
+    \makeatother
+    \IfFileExists{\videoThumb}{
+        \begin{tikzpicture}
+            \node at (0, 0) {\includegraphics{\videoThumb}};
+            \node[circle] at (1,5) {};
+        \end{tikzpicture}
+    }{\phantom{a}}
+}}
+
+% the optional argument is the aspect ratio
+% (default to full-screen, ie 4:3 for Beamer)
+% for instance, for 16:9 (9/16 = 0.56): \videoframe[0.56]{myvideo.webm}
+\newcommand\videoframe[2][]{%
+{
+    \setbeamertemplate{background canvas}{
+        \ifstrempty{#1}{ 
+            % #1 is empty
+            \noindent\colorbox{black}{%
+                \parbox[c][\paperheight][c]{\paperwidth}{%
+            \href{run:#2}{\resizebox{\paperwidth}{\paperheight}{\includepreview{#2}}}
+            }
+        }
+        }{
+            \noindent\colorbox{black}{%
+                \parbox[c][\paperheight][c]{\paperwidth}{%
+                    \href{run:#2}{\resizebox{\paperwidth}{#1\paperwidth}{\includepreview{#2}}}
+            }
+            }
+        }
+    }
+    \setbeamertemplate{background}{}
+    \begin{frame}[plain]
+    \end{frame}
+}
+}
+
+\newcommand\video[3][]{%
+        \ifstrempty{#1}{ 
+            % #1 is empty, we assume an aspect ratio of 16:9
+            \href{run:#3}{\resizebox{#2}{#2*\real{0.56}}{\includepreview{#3}}}
+        }{
+            \href{run:#3}{\resizebox{#2}{#2*\real{#1}}{\includepreview{#3}}}
+        }
+}
+
+\newcommand\paper[1]{%
+    \setbeamertemplate{footline}
+    {%
+        \begin{beamercolorbox}[wd=\textwidth,ht=3ex,dp=1.5ex,leftskip=0.3cm,rightskip=0.3cm]{structure}%
+            \usebeamerfont{page number in head/foot}%
+            [#1]\mbox{}\hfill\insertframenumber%
+        \end{beamercolorbox}%
+    }
+}
+
+\newcommand\licenseframe[1]{%
+    \begin{frame}[plain]
+        \centering
+        \vfill
+        \includegraphics[width=0.3\paperwidth]{by-sa}
+
+        This presentation is released under the terms of the\\ 
+        {\bf \href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons Attribution-Share Alike}} license.
+
+        \vspace{1em}
+        \small You are free to reuse it and modify it as much as you want as long as\\
+        \small (1) you mention me as being the original author,\\
+        \small (2) you re-share your presentation under the same terms.\\
+        
+        \normalsize\vspace{1em}
+        You can download the sources of this presentation here:\\
+        {\bf\footnotesize\IfBeginWith{#1}{http}{\url{#1}}{\href{https://#1}{#1}}}
+    \end{frame}
+}
+
+%%%%%%%%%%%%%%%%% Bubbles to add explanations
+
+\usetikzlibrary{shapes.callouts}
+
+
+\usepackage{xparse}
+
+\tikzset{
+    invisible/.style={opacity=0,text opacity=0},
+    visible on/.style={alt=#1{}{invisible}},
+    alt/.code args={<#1>#2#3}{%
+      \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+    },
+}
+
+\NewDocumentCommand{\bubble}{r<> O{230} O{0.5cm} O{2cm} m m}{%
+\tikz[remember picture, overlay]\node[align=center, fill=hriSec3Comp!60,font=\footnotesize, text width=#4,
+opacity=0.8,text opacity=1,visible on=<#1>,rectangle callout,anchor=pointer,callout relative pointer={(#2:#3)}]
+at (#5) {#6};
+}
+
+\NewDocumentCommand{\bubblemark}{O{-0.5ex} m}{%
+\tikz[overlay,remember picture,baseline=#1] \node (#2) {};
+}
+%%%%%%%%% Highlight (math) text by putting it in a red colorbox
+
+\NewDocumentCommand{\highlight}{r<> m}{%
+\alt<#1>{\colorbox{red!50}{$#2$}}{#2}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Special coordinate system to refer to absolute page coordinates
+%
+% Taken from: http://tex.stackexchange.com/questions/89588/positioning-relative-to-page-in-tikz
+\makeatletter
+\def\parsecomma#1,#2\endparsecomma{\def\page@x{#1}\def\page@y{#2}}
+\tikzdeclarecoordinatesystem{page}{
+    \parsecomma#1\endparsecomma
+    \pgfpointanchor{current page}{north east}
+    % Save the upper right corner
+    \pgf@xc=\pgf@x%
+    \pgf@yc=\pgf@y%
+    % save the lower left corner
+    \pgfpointanchor{current page}{south west}
+    \pgf@xb=\pgf@x%
+    \pgf@yb=\pgf@y%
+    % Transform to the correct placement
+    \pgfmathparse{(\pgf@xc-\pgf@xb)/2.*\page@x+(\pgf@xc+\pgf@xb)/2.}
+    \expandafter\pgf@x\expandafter=\pgfmathresult pt
+    \pgfmathparse{(\pgf@yc-\pgf@yb)/2.*\page@y+(\pgf@yc+\pgf@yb)/2.}
+    \expandafter\pgf@y\expandafter=\pgfmathresult pt
+}
+\makeatother
+
+
+
+\mode
+<all>
