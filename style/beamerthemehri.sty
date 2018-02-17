@@ -26,6 +26,9 @@
 \newif\if@doSectionPage
 \@doSectionPagefalse
 \DeclareOption{nosectionpages}{\@doSectionPagetrue}
+\newif\if@dominted
+\@domintedfalse
+\DeclareOption{minted}{\@domintedtrue}
 \ProcessOptions
 
 \mode<presentation>
@@ -133,6 +136,8 @@
 
 % HACK: by doing so, Beamer replacements are disabled, and fontspec can effectively use Flama everywhere.
 % Without it, digits are typeset using a serif font.
+\if@doBasicFont
+\else
 \usepackage{lmodern}
 
 % General
@@ -144,6 +149,10 @@
 %\setsansfont{FlamaLight}[Extension=.otf]
 
 %\setsansfont{FlamaLight.otf}%
+
+
+\fi
+
 
 \renewcommand\UrlFont{\bf}
 % Titlepage
@@ -311,6 +320,7 @@
 {\end{beamercolorbox}\vskip\smallskipamount}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%  Syntax coloring with minted %%%%%%%%%%%%%%%%%%%%
+\if@dominted
 \RequirePackage[cache]{minted}
 \renewcommand{\theFancyVerbLine}{
   \sffamily\textcolor[rgb]{0.5,0.5,0.5}{\scriptsize\arabic{FancyVerbLine}}}
@@ -342,6 +352,7 @@
                  xleftmargin=1.8em}
 
 \newmintinline[xml]{xml}{fontsize=\small}
+\fi
 
 
 %---------------------------------------------------------------------
